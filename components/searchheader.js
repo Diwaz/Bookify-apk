@@ -84,7 +84,7 @@ const SearchBook = ({ params }) => {
   return (
     <SafeAreaView>
       <View style={style.searchWrapper}>
-        <View>
+        {/* <View>
           <Text
             style={{
               fontFamily: "RudaB",
@@ -94,7 +94,7 @@ const SearchBook = ({ params }) => {
           >
             Showing Results for {params}
           </Text>
-        </View>
+        </View> */}
         <FlatList
           data={filterData}
           showsVerticalScrollIndicator={false}
