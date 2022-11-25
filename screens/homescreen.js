@@ -38,25 +38,21 @@ const Homescreen = ({ navigation }) => {
         <Header />
       </UpperComponent>
       {/* <MidComponent>
-      
-      <Dashboard 
-      btn 
-      title={dashData.title}
-      description={dashData.description}
-      Info
-      bell
-      welcome
-      //Always USE this DisplayP otherwise the app will crash
-      displayP={'flex'}
-      
-      />
-      
+        <Dashboard
+          btn
+          title={dashData.title}
+          description={dashData.description}
+          Info
+          bell
+          welcome
+          //Always USE this DisplayP otherwise the app will crash
+          displayP={"flex"}
+        />
       </MidComponent>
-     
-      <BottomComponent>
 
-     <List category title='Top Category'/>
-     <List college title='Top Rated Colleges'/>
+      <BottomComponent>
+        <List category title="Top Category" />
+        <List college title="Top Rated Colleges" />
       </BottomComponent> */}
     </SafeAreaView>
   );

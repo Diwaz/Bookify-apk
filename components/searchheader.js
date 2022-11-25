@@ -34,7 +34,8 @@ const SearchBook = ({ params }) => {
       data: [...data, ...res],
       isLoading: true,
     });
-    setFilterData(res);
+    var newRes = res.splice(0, 10);
+    setFilterData(newRes);
     setmasterData(res);
   };
 
@@ -53,9 +54,12 @@ const SearchBook = ({ params }) => {
         const textData = params.toUpperCase();
         return itemData.indexOf(textData) > -1;
       });
-      setFilterData(newData);
+      var filteredData = newData.slice(0, 10);
+      setFilterData(filteredData);
+      //setFilterData(newData);
     } else {
-      setFilterData(masterData);
+      var newMasterData = masterData.slice(0, 10);
+      setFilterData(newMasterData);
     }
   }, [params]);
   console.log(params);
@@ -93,6 +97,8 @@ const SearchBook = ({ params }) => {
         </View>
         <FlatList
           data={filterData}
+          showsVerticalScrollIndicator={false}
+          onEndReachedThreshold={10}
           renderItem={itemView}
           keyExtractor={(item, index) => index.toString()}
         />

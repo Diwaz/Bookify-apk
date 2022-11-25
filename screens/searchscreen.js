@@ -14,7 +14,7 @@ const Searchscreen = ({ route }) => {
   console.log("bookId", id);
 
   const [bookData, setBookData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const appHit = async () => {
     const res = await actions.auth.getBooks();
@@ -26,16 +26,18 @@ const Searchscreen = ({ route }) => {
   useEffect(() => {
     appHit();
   }, []);
-  useEffect(() => {
-    const selectedCourse = bookData.filter((el) => {
-      return bookName === el.title;
-    });
 
-    console.log("courses", selectedCourse);
-    console.log("bookData", bookData);
-    setIsLoading(false);
+  const selectedCourse = bookData.filter((el) => {
+    return bookName === el.title;
   });
 
+  setTimeout(() => {
+    if (!!selectedCourse) {
+      setIsLoading(true);
+    } else {
+      setIsLoading(false);
+    }
+  }, 1000);
   const cartData = useSelector((state) => state.workflow.cartData);
 
   //const isCarted = cartData.some(item => item.id === id);
@@ -54,7 +56,7 @@ const Searchscreen = ({ route }) => {
         <Header />
       </UpperComponent>
       <MidComponent>
-        {!isLoading ? (
+        {isLoading ? (
           <Dashboard
             details
             //Always USE this displayP otherwise the app will crash
@@ -63,14 +65,14 @@ const Searchscreen = ({ route }) => {
             id={id}
             bookName={bookName}
             bookAuth={bookAuth}
-            bookImg={bookImg}
+            bookImg={selectedCourse[0].url}
             price={price}
             views={views}
             uptime={uptime}
             iscarted={findObject(cartData, id)}
           />
         ) : (
-          <ActivityIndicator size="large" color="white" />
+          <ActivityIndicator size="large" color="#1C2363" />
         )}
       </MidComponent>
       <BottomComponent>

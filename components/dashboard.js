@@ -300,7 +300,9 @@ const Dashboard = ({
                 >
                   <View style={{ flex: 1 }}>
                     <Image
-                      source={`${bookImg}`}
+                      source={{
+                        uri: `${bookImg}`,
+                      }}
                       style={{
                         width: 89,
                         height: 141,
