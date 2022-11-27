@@ -189,7 +189,7 @@ const List = ({ category, book, title, college }) => {
       style={style.flatlistwrapper}
       onPress={() => {
         /* 1. Navigate to the Details route with params */
-        navigation.navigate("Details", {
+        navigation.navigate("InstitutionDetails", {
           id: item.id,
           collegeName: item.collegeName,
           bookImg: item.image,

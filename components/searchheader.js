@@ -75,6 +75,13 @@ const SearchBook = ({ params }) => {
         }}
       >
         <View style={style.searchText}>
+          <Ionicons
+            name="search-outline"
+            size={14}
+            style={{
+              paddingRight: 10,
+            }}
+          />
           <Text>{item.title}</Text>
         </View>
       </TouchableOpacity>
@@ -120,6 +127,9 @@ const style = StyleSheet.create({
     borderBottomWidth: 1,
     padding: 10,
     borderBottomColor: "gray",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
 });
 

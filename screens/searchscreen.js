@@ -37,7 +37,7 @@ const Searchscreen = ({ route }) => {
     } else {
       setIsLoading(false);
     }
-  }, 2000);
+  }, 5000);
   const cartData = useSelector((state) => state.workflow.cartData);
 
   //const isCarted = cartData.some(item => item.id === id);

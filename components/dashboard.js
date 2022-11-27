@@ -59,6 +59,8 @@ const Dashboard = ({
   cart,
   checkOut,
   iscarted,
+  CollegeInfo,
+  address,
 }) => {
   const navigation = useNavigation();
   const cartData = useSelector((state) => state.workflow.cartData);
@@ -408,6 +410,124 @@ const Dashboard = ({
                           </View>
                         </TouchableOpacity>
                       )}
+                    </View>
+                  </View>
+                </View>
+              )}
+              {CollegeInfo && (
+                <View
+                  style={{
+                    display: "flex",
+
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    padding: 10,
+                    width: width * 0.9,
+                  }}
+                >
+                  <View style={{ flex: 1 }}>
+                    <Image
+                      source={{
+                        uri: `${bookImg}`,
+                      }}
+                      style={{
+                        width: 89,
+                        height: 141,
+                      }}
+                    />
+                  </View>
+                  <View
+                    style={{
+                      flex: 2,
+                      borderWidth: 0,
+                      width: width * 0.6,
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <View>
+                      <Text
+                        style={{
+                          width: width * 0.5,
+                          height: 81,
+                        }}
+                      >
+                        Lorem ipsum, dolor sit amet consectetur adipisicing
+                        elit. Consequatur, enim. Tenetur provident est amet
+                        quam!
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "space-evenly",
+                        marginTop: 22,
+                        alignItems: "center",
+                        width: width * 0.6,
+                      }}
+                    >
+                      <View
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          marginRight: 10,
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <View
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            marginRight: 5,
+                            width: 32,
+                            height: 32,
+                            backgroundColor: "#e2e2e2",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            borderRadius: 4,
+                          }}
+                        >
+                          <Ionicons name={"star-half-outline"} size={19} />
+                        </View>
+                        <Text
+                          style={{
+                            fontSize: 14,
+                            fontFamily: "RudaB",
+                            color: "#1C2363",
+                          }}
+                        >
+                          {" "}
+                          8.5
+                        </Text>
+                      </View>
+
+                      {
+                        <View
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            width: width * 0.28,
+                            height: 30,
+                            backgroundColor: "#009343",
+                            borderRadius: 4,
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <Ionicons
+                            name={"location-outline"}
+                            size={16}
+                            color={"white"}
+                          />
+
+                          <Text style={{ color: "white", fontSize: 8 }}>
+                            {address}
+                          </Text>
+                        </View>
+                      }
                     </View>
                   </View>
                 </View>

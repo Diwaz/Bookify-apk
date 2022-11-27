@@ -37,7 +37,7 @@ const Homescreen = ({ navigation }) => {
       <UpperComponent>
         <Header />
       </UpperComponent>
-      {/* <MidComponent>
+      <MidComponent>
         <Dashboard
           btn
           title={dashData.title}
@@ -53,7 +53,7 @@ const Homescreen = ({ navigation }) => {
       <BottomComponent>
         <List category title="Top Category" />
         <List college title="Top Rated Colleges" />
-      </BottomComponent> */}
+      </BottomComponent>
     </SafeAreaView>
   );
 };

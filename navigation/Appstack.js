@@ -16,6 +16,7 @@ import Detailscreen from "../screens/detailscreen";
 import Cartscreen from "../screens/cartscreen";
 import Searchscreen from "../screens/searchscreen";
 import CategoryDetails from "../screens/categoryDetails";
+import InstitutionScreen from "../screens/institutionScreen";
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +29,7 @@ export const HomeStack = () => {
       <Stack.Screen name="Homescreen" component={Homescreen} />
       <Stack.Screen name="Details" component={Detailscreen} />
       <Stack.Screen name="CategoryDetails" component={CategoryDetails} />
+      <Stack.Screen name="InstitutionDetails" component={InstitutionScreen} />
       <Stack.Screen name="Cart" component={Cartscreen} />
       <Stack.Screen name="Search" component={Searchscreen} />
     </Stack.Navigator>

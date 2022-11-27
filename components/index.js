@@ -8,6 +8,7 @@ import InputComp from './InputComp';
 import SubmitBtn from './SubmitBtn';
 import NavigateLockscreen from './navigateLockscreen';
 import CategoryDisplay from './categoryDisplay';
+import CollegeModal from './CollegeInfoModel';
 
 
 
@@ -21,6 +22,7 @@ export {
     InputComp,
     SubmitBtn,
     NavigateLockscreen,
-    CategoryDisplay
+    CategoryDisplay,
+    CollegeModal
 
 }
