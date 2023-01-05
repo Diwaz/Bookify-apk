@@ -594,18 +594,17 @@ const Dashboard = ({
         {checkOut && (
           <View style={style.container}>
             {/* <Button title="Checkout" onPress={() => handleSnapPress(2)} />
-         
-         <Button title="Close" onPress={() => handleClosePress()} /> */}
-            {/* <BottomSheet
-         ref={sheetRef}
-         snapPoints={snapPoints}
-         onChange={handleSheetChange}
-       >
-         <BottomSheetView>
-           <CheckOut/>
-         </BottomSheetView>
-       </BottomSheet> */}
-            <CheckOut />
+            <Button title="Close" onPress={() => handleClosePress()} /> */}
+            <BottomSheet
+              ref={sheetRef}
+              snapPoints={snapPoints}
+              onChange={handleSheetChange}
+            >
+              <BottomSheetView>
+                <CheckOut />
+              </BottomSheetView>
+            </BottomSheet>
+            {/* <CheckOut /> */}
           </View>
         )}
       </BottomComponent>

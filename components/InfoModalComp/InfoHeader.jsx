@@ -1,21 +1,54 @@
-import { StyleSheet, Text, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  Animated,
+  TouchableWithoutFeedback,
+} from "react-native";
 import React from "react";
 
-const InfoHeader = ({ Header1, Header2, Header3 }) => {
+const { width } = Dimensions.get("window");
+const sliderWidth = width - 50;
+const InfoHeader = ({
+  Header1,
+  Header2,
+  Header3,
+  slideX,
+  header2Press,
+  header1Press,
+  header3Press,
+}) => {
   return (
     <View style={styles.topComponent}>
       <View style={styles.titleBar}>
-        <View>
-          <Text style={styles.modelFont}>{Header1}</Text>
-        </View>
-        <View>
-          <Text style={styles.modelFont}>{Header2}</Text>
-        </View>
-        <View>
-          <Text style={styles.modelFont}>{Header3}</Text>
-        </View>
+        <TouchableWithoutFeedback onPress={header1Press}>
+          <View style={styles.headerText}>
+            <Text style={styles.modelFont}>{Header1}</Text>
+          </View>
+        </TouchableWithoutFeedback>
+        <TouchableWithoutFeedback
+          onPress={header2Press}
+          style={styles.headerText}
+        >
+          <View style={styles.headerText}>
+            <Text style={styles.modelFont}>{Header2}</Text>
+          </View>
+        </TouchableWithoutFeedback>
+        <TouchableWithoutFeedback
+          onPress={header3Press}
+          style={styles.headerText}
+        >
+          <View style={styles.headerText}>
+            <Text style={styles.modelFont}>{Header3}</Text>
+          </View>
+        </TouchableWithoutFeedback>
       </View>
-      <View style={styles.sliderBar}></View>
+      <View style={styles.sliderBar}>
+        <Animated.View
+          style={[styles.Slider, { transform: [{ translateX: slideX }] }]}
+        ></Animated.View>
+      </View>
     </View>
   );
 };
@@ -24,13 +57,13 @@ export default InfoHeader;
 
 const styles = StyleSheet.create({
   topComponent: {
-    width: 373,
+    width: width - 20,
     height: 57,
     borderRadius: 4,
     alignItems: "center",
     justifyContent: "space-between",
     backgroundColor: "#1C23631A",
-    marginBottom: 7,
+    marginBottom: 14,
     flexDirection: "column",
     paddingTop: 20,
   },
@@ -38,17 +71,30 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center",
-    width: 370,
+    width: sliderWidth,
   },
   modelFont: {
     fontFamily: "RudaR",
     color: "#1C2363",
   },
   sliderBar: {
-    width: 50,
+    width: sliderWidth,
+    // backgroundColor: "black",
+  },
+  Slider: {
+    width: sliderWidth / 3,
     backgroundColor: "#1C2363",
     height: 2,
     borderTopRightRadius: 10,
     borderTopLeftRadius: 10,
+    position: "relative",
+    left: 0,
+  },
+  headerText: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+
+    width: sliderWidth / 3,
   },
 });

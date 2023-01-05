@@ -1,13 +1,14 @@
-import { StyleSheet, Text, View, Alert, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Dimensions,
+} from "react-native";
 import React from "react";
 
+const { width } = Dimensions.get("window");
 const Department = () => {
-  const moreDiscription = () =>
-    Alert.alert(
-      "Discription",
-      "      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum quae eum architecto aliquid et cum eos praesentium animi non fugiat, aut repellat hic nisi porro quos veniam. Earum soluta minus possimus reiciendis unde incidunt assumenda debitis dolores voluptate excepturi obcaecati quae atque impedit amet rerum molestiae, modi error esse ipsam?",
-      [{ text: "OK", onPress: () => console.log("OK Pressed") }]
-    );
   return (
     <View style={styles.bottomComponent}>
       <View style={styles.descriptionModal}>
@@ -20,7 +21,7 @@ const Department = () => {
         >
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur
           quia impedit unde earum ducimus dolorum?...
-          <TouchableOpacity onPress={moreDiscription}>
+          <TouchableOpacity>
             <Text
               style={{
                 fontFamily: "RudaB",
@@ -38,7 +39,7 @@ const Department = () => {
         <View style={styles.rowComp}>
           <View style={styles.boxModal}>
             <Text style={styles.qn}>Author</Text>
-            <Text style={styles.answer}>Hemanta GC</Text>
+            <Text style={styles.answer}>Department</Text>
           </View>
           <View>
             <View style={styles.boxModal}>
@@ -69,8 +70,8 @@ export default Department;
 const styles = StyleSheet.create({
   bottomComponent: {
     borderRadius: 4,
-    width: 373,
-    height: 250,
+    width: width,
+    height: 400,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#FFFFFF",

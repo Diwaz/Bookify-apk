@@ -11,7 +11,7 @@ import React, { useEffect } from "react";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { useFonts } from "expo-font";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Dashboard, Header, List } from "../components";
+import { Dashboard, Header, List, WelcomeBoard } from "../components";
 import UpperComponent from "../components/UpperComponent";
 import MidComponent from "../components/midComponent";
 import BottomComponent from "../components/bottomComponent";
@@ -38,7 +38,7 @@ const Homescreen = ({ navigation }) => {
         <Header />
       </UpperComponent>
       <MidComponent>
-        <Dashboard
+        {/* <Dashboard
           btn
           title={dashData.title}
           description={dashData.description}
@@ -47,7 +47,8 @@ const Homescreen = ({ navigation }) => {
           welcome
           //Always USE this DisplayP otherwise the app will crash
           displayP={"flex"}
-        />
+        /> */}
+        <WelcomeBoard />
       </MidComponent>
 
       <BottomComponent>
