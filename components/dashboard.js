@@ -25,11 +25,11 @@ import CheckOut from "./dashboardComp/checkOut";
 import actions from "../redux/actions";
 import { useSelector } from "react-redux";
 import { showCart } from "../utils/helperfunction";
-import BottomSheet, {
-  BottomSheetView,
-  BottomSheetModal,
-  BottomSheetModalProvider,
-} from "@gorhom/bottom-sheet";
+// import BottomSheet, {
+//   BottomSheetView,
+//   BottomSheetModal,
+//   BottomSheetModalProvider,
+// } from "@gorhom/bottom-sheet";
 
 import MidComponent from "../components/midComponent";
 import BottomComponent from "../components/bottomComponent";
@@ -595,7 +595,7 @@ const Dashboard = ({
           <View style={style.container}>
             {/* <Button title="Checkout" onPress={() => handleSnapPress(2)} />
             <Button title="Close" onPress={() => handleClosePress()} /> */}
-            <BottomSheet
+            {/* <BottomSheet
               ref={sheetRef}
               snapPoints={snapPoints}
               onChange={handleSheetChange}
@@ -603,8 +603,8 @@ const Dashboard = ({
               <BottomSheetView>
                 <CheckOut />
               </BottomSheetView>
-            </BottomSheet>
-            {/* <CheckOut /> */}
+            </BottomSheet> */}
+            <CheckOut />
           </View>
         )}
       </BottomComponent>

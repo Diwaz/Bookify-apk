@@ -1,48 +1,61 @@
-import { Platform, StyleSheet, Text, View } from "react-native";
-import React, { useState, useEffect } from "react";
-import { WebView } from "react-native-webview";
+import {
+  StyleSheet,
+  SafeAreaView,
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  Animated,
+  Dimensions,
+  FlatList,
+} from "react-native";
+import React, { useState } from "react";
 
-const PdfView = () => {
-  //   const [pdfUrl, setPdfUrl] = useState(null);
+// import Pdf from "react-native-pdf";
 
-  //   useEffect(() => {
-  //     const fetchPdf = async () => {
-  //       const response = await fetch(
-  //         "https://www.gutenberg.org/files/42911/Bizet-Variations_Chromatiques_de_concert/Bizet-Variations_Chromatiques_de_concert_Theme_A4.pdf"
-  //       );
-  //       const pdf = await response.arrayBuffer();
-  //       const pdfUrl = `data:application/pdf;base64,${btoa(pdf)}`;
-  //       setPdfUrl(pdfUrl);
-  //     };
+export default function PdfViewer({ navigation }) {
+  const [selectedId, setSelectedId] = useState(null);
 
-  //     fetchPdf();
-  //   }, []);
+  const source = {
+    uri: "http://samples.leanpub.com/thereactnativebook-sample.pdf",
+    cache: true,
+  };
 
-  return Platform.OS === "web" ? (
-    <iframe
-      src="https://www.gutenberg.org/files/42911/Bizet-Variations_Chromatiques_de_concert/Bizet-Variations_Chromatiques_de_concert_Theme_A4.pdf"
-      height={"50%"}
-      width={"100%"}
-      style={{
-        flex: 1,
-      }}
-    />
-  ) : (
-    <View style={{ flex: 1 }}>
-      <WebView
-        source={{
-          uri: "https://www.gutenberg.org/files/42911/Bizet-Variations_Chromatiques_de_concert/Bizet-Variations_Chromatiques_de_concert_Theme_A4.pdf",
+  return (
+    <View style={styles.container}>
+      {/* <Pdf
+        trustAllCerts={false}
+        enablePaging={true}
+        source={source}
+        horizontal={true}
+        onLoadComplete={(numberOfPages, filePath) => {
+          console.log(`Number of pages: ${numberOfPages}`);
         }}
-        style={{ marginTop: 22, flex: 1 }}
-      />
+        onPageChanged={(page, numberOfPages) => {
+          console.log(`Current page: ${page}`);
+        }}
+        onError={(error) => {
+          console.log(error);
+        }}
+        onPressLink={(uri) => {
+          console.log(`Link pressed: ${uri}`);
+        }}
+        style={styles.pdf}
+      /> */}
     </View>
   );
-};
-
-export default PdfView;
-
+}
 const styles = StyleSheet.create({
-  webview: {
+  conatiner: {},
+  container: {
     flex: 1,
+    justifyContent: "flex-start",
+    alignItems: "center",
+    marginTop: 25,
+  },
+  pdf: {
+    flex: 1,
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height,
   },
 });
