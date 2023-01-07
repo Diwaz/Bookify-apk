@@ -22,7 +22,7 @@ import InstitutionScreen from "../screens/institutionScreen";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import PurchaseScreen from "../screens/purchasescreen";
 import PDFView from "../screens/PdfView";
-
+import ResultBook from "../screens/resultScreen";
 // const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -33,6 +33,7 @@ export const HomeStack = ({ navigation, route }) => {
     "CategoryDetails",
     "InstitutionDetails",
     "Cart",
+    "Search",
   ];
 
   if (tabHiddenRoutes.includes(getFocusedRouteNameFromRoute(route))) {
@@ -70,17 +71,31 @@ export const HomeStack = ({ navigation, route }) => {
       <Stack.Screen name="InstitutionDetails" component={InstitutionScreen} />
       <Stack.Screen name="Cart" component={Cartscreen} />
       <Stack.Screen name="Search" component={Searchscreen} />
+      <Stack.Screen name="Result" component={ResultBook} />
     </Stack.Navigator>
   );
 };
 
 export const PurchaseStack = ({ navigation, route }) => {
-  const tabHiddenRoutes = ["PdfViewer", "CategoryDetails"];
+  const tabHiddenRoutes = ["PdfViewer", "PurchaseScreen"];
 
   if (tabHiddenRoutes.includes(getFocusedRouteNameFromRoute(route))) {
     navigation.setOptions({ tabBarStyle: { display: "none" } });
   } else {
-    navigation.setOptions({ tabBarStyle: { display: "flex" } });
+    navigation.setOptions({
+      tabBarStyle: {
+        display: "flex",
+        position: "absolute",
+        bottom: 25,
+        left: 20,
+        right: 20,
+        elevation: 0,
+        backgroundColor: "#ffffff",
+        borderRadius: 15,
+        height: 70,
+        ...styles.shadow,
+      },
+    });
   }
   return (
     <Stack.Navigator

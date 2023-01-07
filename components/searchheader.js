@@ -69,7 +69,7 @@ const SearchBook = ({ params }) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate("Search", {
+          navigation.navigate("Result", {
             bookName: item.title,
           });
         }}
@@ -82,7 +82,7 @@ const SearchBook = ({ params }) => {
               paddingRight: 10,
             }}
           />
-          <Text>{item.title}</Text>
+          <Text> {item.title} </Text>
         </View>
       </TouchableOpacity>
     );
@@ -92,16 +92,16 @@ const SearchBook = ({ params }) => {
     <SafeAreaView>
       <View style={style.searchWrapper}>
         {/* <View>
-          <Text
-            style={{
-              fontFamily: "RudaB",
-              fontSize: 18,
-              color: "#1C2363",
-            }}
-          >
-            Showing Results for {params}
-          </Text>
-        </View> */}
+                      <Text
+                        style={{
+                          fontFamily: "RudaB",
+                          fontSize: 18,
+                          color: "#1C2363",
+                        }}
+                      >
+                        Showing Results for {params}
+                      </Text>
+                    </View> */}
         <FlatList
           data={filterData}
           showsVerticalScrollIndicator={false}

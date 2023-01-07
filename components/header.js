@@ -79,15 +79,16 @@ const Header = () => {
   //navigation config
   const navigation = useNavigation();
 
-  const [search, setSearch] = useState("");
   return (
     <View style={style.header}>
       <DrawerC />
       <Logo />
       <TouchableOpacity
         style={{ flex: 1, display: "flex", alignItems: "center" }}
-
-        //onPress={onFocus}
+        onPress={() => {
+          /* 1. Navigate to the Details route with params */
+          navigation.navigate("Search");
+        }}
       >
         <Text>
           <Ionicons
