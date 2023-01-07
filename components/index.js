@@ -9,7 +9,7 @@ import SubmitBtn from './SubmitBtn';
 import NavigateLockscreen from './navigateLockscreen';
 import CategoryDisplay from './categoryDisplay';
 import CollegeModal from './CollegeInfoModel';
-
+import WelcomeBoard from './welcomeBoard';
 
 
 
@@ -26,5 +26,6 @@ export {
     CategoryDisplay,
     CollegeModal,
 
+    WelcomeBoard
 
 }

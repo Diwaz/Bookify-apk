@@ -35,7 +35,7 @@ const CategoryDetails = ({ route }) => {
         minOverlayOpacity={0.3}
         renderHeader={() => (
           <Image
-            source={require("../assets/Cover/cover6.jpg")}
+            source={require("../assets/Cover/cover7.jpg")}
             style={styles.image}
           />
         )}

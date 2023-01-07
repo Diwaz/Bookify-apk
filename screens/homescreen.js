@@ -12,7 +12,7 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { useFonts } from "expo-font";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Dashboard, Header, List } from "../components";
-// import { WelcomeBoard } from "../components/welcomeBoard";
+import { WelcomeBoard } from "../components";
 import UpperComponent from "../components/UpperComponent";
 import MidComponent from "../components/midComponent";
 import BottomComponent from "../components/bottomComponent";
@@ -49,7 +49,7 @@ const Homescreen = ({ navigation }) => {
           //Always USE this DisplayP otherwise the app will crash
           displayP={"flex"}
         /> */}
-        {/* <WelcomeBoard /> */}
+        <WelcomeBoard />
       </MidComponent>
 
       <BottomComponent>
@@ -63,7 +63,7 @@ const style = StyleSheet.create({
   mainwrapper: {
     display: "flex",
     flexDirection: "column",
-    height: height,
+    height: height - 50,
   },
 });
 export default Homescreen;

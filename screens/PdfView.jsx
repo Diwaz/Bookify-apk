@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 
-// import Pdf from "react-native-pdf";
+import Pdf from "react-native-pdf";
 
 export default function PdfViewer({ navigation }) {
   const [selectedId, setSelectedId] = useState(null);
@@ -23,7 +23,7 @@ export default function PdfViewer({ navigation }) {
 
   return (
     <View style={styles.container}>
-      {/* <Pdf
+      <Pdf
         trustAllCerts={false}
         enablePaging={true}
         source={source}
@@ -41,7 +41,7 @@ export default function PdfViewer({ navigation }) {
           console.log(`Link pressed: ${uri}`);
         }}
         style={styles.pdf}
-      /> */}
+      />
     </View>
   );
 }

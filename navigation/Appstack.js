@@ -2,14 +2,14 @@ import "react-native-gesture-handler";
 
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
-import { createDrawerNavigator } from "@react-navigation/drawer";
+// import { createDrawerNavigator } from "@react-navigation/drawer";
 import Homescreen from "../screens/homescreen";
 import Purchasescreen from "../screens/purchasescreen";
 import Settingscreen from "../screens/settingscreen";
 import OfferScreen from "../screens/offerscreen";
 import Logoutscreen from "../screens/logoutscreen";
 import Profilescreen from "../screens/profilescreen";
-import CustomDrawer from "../components/cusomedrawer";
+// import CustomDrawer from "../components/cusomedrawer";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -23,18 +23,36 @@ import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import PurchaseScreen from "../screens/purchasescreen";
 import PDFView from "../screens/PdfView";
 
-const Drawer = createDrawerNavigator();
+// const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export const HomeStack = ({ navigation, route }) => {
-  // const tabHiddenRoutes = ["Details", "CategoryDetails"];
+  const tabHiddenRoutes = [
+    "Details",
+    "CategoryDetails",
+    "InstitutionDetails",
+    "Cart",
+  ];
 
-  // if (tabHiddenRoutes.includes(getFocusedRouteNameFromRoute(route))) {
-  //   navigation.setOptions({ tabBarStyle: { display: "none" } });
-  // } else {
-  //   navigation.setOptions({ tabBarStyle: { display: "flex" } });
-  // }
+  if (tabHiddenRoutes.includes(getFocusedRouteNameFromRoute(route))) {
+    navigation.setOptions({ tabBarStyle: { display: "none" } });
+  } else {
+    navigation.setOptions({
+      tabBarStyle: {
+        display: "flex",
+        position: "absolute",
+        bottom: 25,
+        left: 20,
+        right: 20,
+        elevation: 0,
+        backgroundColor: "#ffffff",
+        borderRadius: 15,
+        height: 70,
+        ...styles.shadow,
+      },
+    });
+  }
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
@@ -57,13 +75,13 @@ export const HomeStack = ({ navigation, route }) => {
 };
 
 export const PurchaseStack = ({ navigation, route }) => {
-  // const tabHiddenRoutes = ["Details", "CategoryDetails"];
+  const tabHiddenRoutes = ["PdfViewer", "CategoryDetails"];
 
-  // if (tabHiddenRoutes.includes(getFocusedRouteNameFromRoute(route))) {
-  //   navigation.setOptions({ tabBarStyle: { display: "none" } });
-  // } else {
-  //   navigation.setOptions({ tabBarStyle: { display: "flex" } });
-  // }
+  if (tabHiddenRoutes.includes(getFocusedRouteNameFromRoute(route))) {
+    navigation.setOptions({ tabBarStyle: { display: "none" } });
+  } else {
+    navigation.setOptions({ tabBarStyle: { display: "flex" } });
+  }
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
