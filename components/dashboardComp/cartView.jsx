@@ -26,7 +26,10 @@ const CartView = () => {
   const [checked, setChecked] = useState([]);
   useEffect(() => {
     let tprice = getPrice(checked);
+    let pNames = getProductNames(checked);
+
     actions.workflow.setCartPrice(tprice);
+    actions.workflow.setProductNames(pNames);
   }, [checked]);
   const getPrice = (item) => {
     let Idarr = item;
@@ -47,14 +50,37 @@ const CartView = () => {
     console.log(totalPrice);
     return totalPrice;
   };
+  const getProductNames = (item) => {
+    let Idarr = item;
+    let dataarr = [];
+    for (let i = 0; i < Idarr.length; i++) {
+      dataarr.push(
+        cartData.find((el) => {
+          return Idarr[i] === el.id;
+        })
+      );
+    }
+
+    let productNames = [];
+    dataarr
+      .filter((res) => res.bookName)
+      .map((el) => {
+        productNames.push(el.bookName);
+      });
+    console.log("Only book names are", productNames);
+    return productNames;
+  };
 
   const cartItems = getCartedData();
-  const deleteCartItems = (id) => {
+  const deleteCartItems = (id, idx) => {
     actions.workflow.deleteFromCart({
       id,
     });
+    setChecked(checked.splice(idx, 1));
+
     setCartData(cartItems);
-    console.log("index from cart", id);
+    console.log("index from cart", checked);
+    console.log("index of deleted item", idx);
     console.log("async user data on delete", getCartData());
   };
 
@@ -116,7 +142,7 @@ const CartView = () => {
               console.log("array of cart items", Idarr[0]);
               let idx = Idarr[0].indexOf(item.id);
               console.log("index of dis", idx);
-              deleteCartItems(item.id);
+              deleteCartItems(item.id, idx);
             }}
           >
             <Ionicons name={"trash-outline"} size={16} color={"red"} />

@@ -4,7 +4,8 @@ import types from '../types';
 const initial_state = {
 
     cartData: [],
-    totalPrice: 0
+    totalPrice: 0,
+    productNames: []
 }
 
 export default function(state = initial_state, action) {
@@ -31,6 +32,10 @@ export default function(state = initial_state, action) {
         case types.SET_TOTAL:
             return {...state,
                 totalPrice: action.payload
+            }
+        case types.GET_PRODUCT_NAMES:
+            return {...state,
+                productNames: action.payload
             }
 
         default:
