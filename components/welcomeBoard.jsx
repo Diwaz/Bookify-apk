@@ -54,7 +54,7 @@ const WelcomeBoard = () => {
     }
   };
   return (
-    <View style={{ flex: 1, height: 400 }}>
+    <View style={{ flex: 1, height: 260 }}>
       <ScrollView
         style={{ flex: 1 }}
         pagingEnabled
