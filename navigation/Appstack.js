@@ -23,6 +23,8 @@ import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import PurchaseScreen from "../screens/purchasescreen";
 import PDFView from "../screens/PdfView";
 import ResultBook from "../screens/resultScreen";
+import PaymentSuccess from "../screens/paymentSuccess";
+
 // const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -34,6 +36,7 @@ export const HomeStack = ({ navigation, route }) => {
     "InstitutionDetails",
     "Cart",
     "Search",
+    "PaySuccess",
   ];
 
   if (tabHiddenRoutes.includes(getFocusedRouteNameFromRoute(route))) {
@@ -72,6 +75,7 @@ export const HomeStack = ({ navigation, route }) => {
       <Stack.Screen name="Cart" component={Cartscreen} />
       <Stack.Screen name="Search" component={Searchscreen} />
       <Stack.Screen name="Result" component={ResultBook} />
+      <Stack.Screen name="PaySuccess" component={PaymentSuccess} />
     </Stack.Navigator>
   );
 };

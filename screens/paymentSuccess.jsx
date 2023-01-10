@@ -3,7 +3,7 @@ import React from "react";
 import SuccessSVG from "../assets/SVGs/success";
 
 const { width, height } = Dimensions.get("window");
-const OfferScreen = () => {
+const PaymentSuccess = () => {
   return (
     <SafeAreaView
       style={{
@@ -142,4 +142,4 @@ const style = StyleSheet.create({
   },
 });
 
-export default OfferScreen;
+export default PaymentSuccess;

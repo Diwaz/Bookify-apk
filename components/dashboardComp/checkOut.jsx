@@ -11,8 +11,10 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { getCartedPrice } from "../../utils/utils";
 import { useSelector } from "react-redux";
 import { KhatiSdk } from "rn-all-nepal-payment";
+import { useNavigation } from "@react-navigation/native";
 
 const CheckOut = () => {
+  const navigation = useNavigation();
   let totalPrice = useSelector((state) => state.workflow.totalPrice);
   let bookNames = useSelector((state) => state.workflow.productNames);
 
@@ -30,6 +32,7 @@ const CheckOut = () => {
     } else if (resp.event === "SUCCESS") {
       console.log({ data: resp.data });
       setToken(resp.data.token);
+      navigation.navigate("PaySuccess");
     } else if (resp.event === "ERROR") {
       // console.log({ error: resp.data })
     }
