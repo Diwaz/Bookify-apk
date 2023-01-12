@@ -9,11 +9,34 @@ import {
   Dimensions,
   FlatList,
 } from "react-native";
-import React, { useState } from "react";
+
+import React, { useEffect, useState } from "react";
+import { AppState } from "react-native";
 
 import Pdf from "react-native-pdf";
 
 export default function PdfViewer({ navigation }) {
+  useEffect(() => {
+    const handleAppStateChange = (nextAppState) => {
+      if (appState.match(/inactive|background/) && nextAppState === "active") {
+        console.log("App has come to the foreground!");
+      } else if (nextAppState === "background") {
+        console.log("App has been minimized!");
+      }
+      setAppState(nextAppState);
+    };
+
+    const subscription = AppState.addEventListener(
+      "change",
+      handleAppStateChange
+    );
+
+    return () => {
+      subscription.remove();
+    };
+  }, []);
+
+  const [appState, setAppState] = useState(AppState.currentState);
   const [selectedId, setSelectedId] = useState(null);
 
   const source = {
@@ -23,6 +46,7 @@ export default function PdfViewer({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <View style={styles.pdfHeader}></View>
       <Pdf
         trustAllCerts={false}
         enablePaging={true}
@@ -46,7 +70,6 @@ export default function PdfViewer({ navigation }) {
   );
 }
 const styles = StyleSheet.create({
-  conatiner: {},
   container: {
     flex: 1,
     justifyContent: "flex-start",
@@ -57,5 +80,8 @@ const styles = StyleSheet.create({
     flex: 1,
     width: Dimensions.get("window").width,
     height: Dimensions.get("window").height,
+  },
+  pdfHeader: {
+    backgroundColor: "red",
   },
 });
