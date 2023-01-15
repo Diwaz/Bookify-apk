@@ -8,15 +8,39 @@ import {
   Image,
   Dimensions,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
+import * as FileSystem from "expo-file-system";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 
 const { height, width } = Dimensions.get("window");
 
+const pdfUrl = "http://samples.leanpub.com/thereactnativebook-sample.pdf";
+
 const PurchaseScreen = ({ sectionName }) => {
+  const [downloaded, setDownloaded] = useState(false);
   const navigation = useNavigation();
+  const [pdfUri, setPdfUri] = useState("");
+
+  const downloadPdf = async () => {
+    try {
+      console.log("downloadStarted", pdfUrl);
+      // Download the PDF file and save it to the device
+      const downloadResult = await FileSystem.downloadAsync(
+        pdfUrl,
+        FileSystem.documentDirectory + "book1.pdf"
+      );
+      console.log(downloadResult);
+      setPdfUri(downloadResult.uri);
+      setDownloaded(true);
+      console.log(pdfUri);
+      // return downloadResult.uri;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const bookData = [
     {
       id: 1,
@@ -110,11 +134,24 @@ const PurchaseScreen = ({ sectionName }) => {
                 color: "white",
               }}
             >
-              {" "}
               Open
             </Text>
           </View>
         </TouchableOpacity>
+        {!downloaded && (
+          <TouchableOpacity onPress={downloadPdf}>
+            <View style={styles.controlLayout2}>
+              <Text
+                style={{
+                  fontFamily: "RudaB",
+                  color: "white",
+                }}
+              >
+                Download
+              </Text>
+            </View>
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );
@@ -172,5 +209,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#009343",
     borderRadius: 10,
     height: 30,
+  },
+  controlLayout2: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    backgroundColor: "#009343",
+    borderRadius: 10,
+    height: 30,
+    marginTop: 5,
   },
 });

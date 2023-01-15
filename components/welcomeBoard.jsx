@@ -5,7 +5,7 @@ let currentIndex = 0;
 const childCount = 3;
 const ContainerWidth = 400;
 const childrenHeight = 200;
-const reqMargin = (ContainerWidth - childrenHeight) / 6.5;
+const reqMargin = (ContainerWidth - childrenHeight) / 7;
 const WelcomeBoard = () => {
   const [modelHeight, setmodelHeight] = useState(0);
   const [autoplay, setAutoPlay] = useState(true);
