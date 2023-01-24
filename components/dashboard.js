@@ -303,7 +303,7 @@ const Dashboard = ({
                   <View style={{ flex: 1 }}>
                     <Image
                       source={{
-                        uri: `${bookImg}`,
+                        uri: `https://shineducation.com${bookImg}`,
                       }}
                       style={{
                         width: 89,

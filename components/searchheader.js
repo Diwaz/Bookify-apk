@@ -29,14 +29,14 @@ const SearchBook = ({ params }) => {
 
   const appHit = async () => {
     const res = await actions.auth.getBooks();
-    console.log("api res==<<<<", res[1].title);
+    console.log("api res==<<<<", res.data[1]);
     updateState({
-      data: [...data, ...res],
+      data: [...data, res],
       isLoading: true,
     });
-    var newRes = res.splice(0, 10);
+    var newRes = res.data; //.splice(0, 10);
     setFilterData(newRes);
-    setmasterData(res);
+    setmasterData(res.data);
   };
 
   const updateState = (data) => setState((state) => ({ ...state, ...data }));
@@ -48,9 +48,7 @@ const SearchBook = ({ params }) => {
   useEffect(() => {
     if (params) {
       const newData = masterData.filter((item) => {
-        const itemData = item.title
-          ? item.title.toUpperCase()
-          : "".toUpperCase();
+        const itemData = item.name ? item.name.toUpperCase() : "".toUpperCase();
         const textData = params.toUpperCase();
         return itemData.indexOf(textData) > -1;
       });
@@ -62,7 +60,7 @@ const SearchBook = ({ params }) => {
       setFilterData(newMasterData);
     }
   }, [params]);
-  console.log(params);
+  console.log("this is params", params);
   const { isLoading, data } = state;
 
   const itemView = ({ item }) => {
@@ -70,7 +68,7 @@ const SearchBook = ({ params }) => {
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("Result", {
-            bookName: item.title,
+            bookName: item.name,
           });
         }}
       >
@@ -82,7 +80,7 @@ const SearchBook = ({ params }) => {
               paddingRight: 10,
             }}
           />
-          <Text> {item.title} </Text>
+          <Text> {item.name} </Text>
         </View>
       </TouchableOpacity>
     );

@@ -1,4 +1,4 @@
-export const API_BASE_URL = 'https://jsonplaceholder.typicode.com'
+export const API_BASE_URL = 'https://shineducation.com/api'
     //'http://192.168.1.68:3000/api/v1'
     //'https://182.93.93.92:8443'
     //'http://192.168.1.68:3000/api/v1'
@@ -10,6 +10,6 @@ export const getApiUrl = (endpoint) => {
 
 export const GET_USERS = getApiUrl('/user');
 
-export const LOGIN = getApiUrl('/user/login/');
-export const SIGNUP = getApiUrl('/user/register');
-export const GET_BOOKS = getApiUrl('/photos');
+export const LOGIN = getApiUrl('/users/login');
+export const SIGNUP = getApiUrl('/users/register');
+export const GET_BOOKS = getApiUrl('/books/getAll');

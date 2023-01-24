@@ -10,7 +10,7 @@ const { width, height } = Dimensions.get("window");
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { getCartedPrice } from "../../utils/utils";
 import { useSelector } from "react-redux";
-import { KhatiSdk } from "rn-all-nepal-payment";
+// import { KhatiSdk } from "rn-all-nepal-payment";
 import { useNavigation } from "@react-navigation/native";
 
 const CheckOut = () => {
@@ -147,7 +147,7 @@ const CheckOut = () => {
                 Rs {totalPrice}
                 <Ionicons name={"arrow-forward-outline"} color={"white"} />
               </Text>
-              <KhatiSdk
+              {/* <KhatiSdk
                 amount={totalPrice} // Number in paisa
                 isVisible={isVisible} // Bool to show model
                 paymentPreference={[
@@ -163,7 +163,7 @@ const CheckOut = () => {
                 onPaymentComplete={_onPaymentComplete} // Callback from Khalti Web Sdk
                 productUrl={"http://gameofthrones.wikia.com/wiki/Dragons"} // Url of product
                 publicKey={"test_public_key_bd88477777d248f1bb37194df53121dd"} // Test or live public key which identifies the merchant
-              />
+              /> */}
             </View>
           </TouchableOpacity>
         ) : (

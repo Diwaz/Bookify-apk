@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import * as FileSystem from "expo-file-system";
-
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 
@@ -19,23 +18,39 @@ const { height, width } = Dimensions.get("window");
 const pdfUrl = "http://samples.leanpub.com/thereactnativebook-sample.pdf";
 
 const PurchaseScreen = ({ sectionName }) => {
+  const password = "thisisveryverysecurePassword0708"; // The password used to encrypt/decrypt the file
   const [downloaded, setDownloaded] = useState(false);
   const navigation = useNavigation();
   const [pdfUri, setPdfUri] = useState("");
 
   const downloadPdf = async () => {
     try {
-      console.log("downloadStarted", pdfUrl);
-      // Download the PDF file and save it to the device
-      const downloadResult = await FileSystem.downloadAsync(
-        pdfUrl,
-        FileSystem.documentDirectory + "book1.pdf"
-      );
-      console.log(downloadResult);
-      setPdfUri(downloadResult.uri);
-      setDownloaded(true);
-      console.log(pdfUri);
-      // return downloadResult.uri;
+      // // Download the PDF file
+      // const pdfBuffer = await FileSystem.downloadAsync(
+      //   pdfUrl,
+      //   FileSystem.documentDirectory + "extra.txt",
+      //   {
+      //     encoding: FileSystem.EncodingType.Base64,
+      //   }
+      // );
+      // console.log("encryption started");
+      // //Encrypt the pdf buffer
+      // const cipher = crypto.createCipher("aes-256-cbc", password);
+      // let encryptedPdf = cipher.update(pdfBuffer, "binary", "base64");
+      // encryptedPdf += cipher.final("base64");
+
+      // // Save the encrypted pdf buffer to the device
+      // const pdfPath = FileSystem.documentDirectory + "encrypted.pdf";
+      // const downloadResult = await FileSystem.writeAsStringAsync(
+      //   pdfPath,
+      //   encryptedPdf,
+      //   {
+      //     encoding: FileSystem.EncodingType.Base64,
+      //   }
+      // );
+      // const pdfLocalPath = downloadResult.uri;
+      // console.log("enc pdf path", pdfLocalPath);
+      console.log("Download Started");
     } catch (error) {
       console.error(error);
     }
@@ -51,42 +66,42 @@ const PurchaseScreen = ({ sectionName }) => {
       upDate: "7 days",
       price: 675,
     },
-    {
-      id: 2,
-      bookName: "The King of Drugs",
-      image: require("../assets/Cover/cover2.jpg"),
-      author: "Nora Barret",
-      views: 567,
-      upDate: "1 day",
-      price: 1000,
-    },
-    {
-      id: 3,
-      bookName: "Creative Business",
-      image: require("../assets/Cover/cover3.jpg"),
-      author: "Allan Watts",
-      views: 64567,
-      upDate: "3 months",
-      price: 6750,
-    },
-    {
-      id: 4,
-      bookName: "Creative Ideas",
-      image: require("../assets/Cover/cover4.jpg"),
-      author: "Andrew Schulz",
-      views: 40567,
-      upDate: "7 days",
-      price: 300,
-    },
-    {
-      id: 5,
-      bookName: "Creative Brain",
-      image: require("../assets/Cover/cover5.jpg"),
-      author: "George R. R. Martin",
-      views: 91345,
-      upDate: "21 days",
-      price: 2000,
-    },
+    // {
+    //   id: 2,
+    //   bookName: "The King of Drugs",
+    //   image: require("../assets/Cover/cover2.jpg"),
+    //   author: "Nora Barret",
+    //   views: 567,
+    //   upDate: "1 day",
+    //   price: 1000,
+    // },
+    // {
+    //   id: 3,
+    //   bookName: "Creative Business",
+    //   image: require("../assets/Cover/cover3.jpg"),
+    //   author: "Allan Watts",
+    //   views: 64567,
+    //   upDate: "3 months",
+    //   price: 6750,
+    // },
+    // {
+    //   id: 4,
+    //   bookName: "Creative Ideas",
+    //   image: require("../assets/Cover/cover4.jpg"),
+    //   author: "Andrew Schulz",
+    //   views: 40567,
+    //   upDate: "7 days",
+    //   price: 300,
+    // },
+    // {
+    //   id: 5,
+    //   bookName: "Creative Brain",
+    //   image: require("../assets/Cover/cover5.jpg"),
+    //   author: "George R. R. Martin",
+    //   views: 91345,
+    //   upDate: "21 days",
+    //   price: 2000,
+    // },
   ];
 
   const renderBooks = ({ item }) => (

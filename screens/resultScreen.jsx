@@ -18,9 +18,9 @@ const Resultscreen = ({ route }) => {
 
   const appHit = async () => {
     const res = await actions.auth.getBooks();
-    console.log("api res==<<<<", res[1].title);
+    console.log("api res==<<<<", res.data[1].name);
 
-    setBookData(res);
+    setBookData(res.data);
   };
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const Resultscreen = ({ route }) => {
   }, []);
 
   const selectedCourse = bookData.filter((el) => {
-    return bookName === el.title;
+    return bookName === el.name;
   });
 
   setTimeout(() => {
@@ -65,7 +65,7 @@ const Resultscreen = ({ route }) => {
             id={id}
             bookName={bookName}
             bookAuth={bookAuth}
-            bookImg={selectedCourse[0].url}
+            bookImg={selectedCourse[0].image}
             price={price}
             views={views}
             uptime={uptime}

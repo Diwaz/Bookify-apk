@@ -13,7 +13,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { AppState } from "react-native";
 
-import Pdf from "react-native-pdf";
+// import Pdf from "react-native-pdf";
 
 export default function PdfViewer({ navigation }) {
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function PdfViewer({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.pdfHeader}></View>
-      <Pdf
+      {/* <Pdf
         trustAllCerts={false}
         enablePaging={true}
         source={source}
@@ -65,7 +65,7 @@ export default function PdfViewer({ navigation }) {
           console.log(`Link pressed: ${uri}`);
         }}
         style={styles.pdf}
-      />
+      /> */}
     </View>
   );
 }

@@ -63,7 +63,7 @@ const LRForm = ({
       updateState({ isLoading: true });
       try {
         const res = await actions.auth.login({
-          email: username,
+          username,
           password,
         });
         console.log("Res------->", res.success);
