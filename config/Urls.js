@@ -11,5 +11,5 @@ export const getApiUrl = (endpoint) => {
 export const GET_USERS = getApiUrl('/user');
 
 export const LOGIN = getApiUrl('/users/login');
-export const SIGNUP = getApiUrl('/users/register');
+export const SIGNUP = getApiUrl('/users/signup');
 export const GET_BOOKS = getApiUrl('/books/getAll');

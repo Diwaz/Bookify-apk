@@ -85,17 +85,18 @@ const LRForm = ({
       console.log(email, password, username, phone, role);
       try {
         const res = await actions.auth.signUp({
-          email,
-          password,
-          username,
-          phone,
+          username: username,
+          password: password,
           role: "user",
+          email: email,
+          contactNum: phone,
         });
         console.log("Res->", res);
         updateState({ isLoading: false });
         navigation.navigate("Verify");
       } catch (err) {
         console.log(err);
+        showError(err.message);
         updateState({ isLoading: false });
       }
     }
@@ -164,7 +165,7 @@ const LRForm = ({
         <View style={styles.Forminput}>
           {emailr && (
             <InputComp
-              name={"Email"}
+              name={"Email here"}
               type={"email-address"}
               icon={"text-outline"}
               onChangeText={(email) => updateState({ email })}
