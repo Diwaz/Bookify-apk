@@ -73,12 +73,12 @@ const Dashboard = ({
   // }
   console.log(cartData, id);
   const logout = () => {
-    // setLoading(true);
-    // setTimeout(() => {
-    //   actions.auth.logout();
-    //   setLoading(false);
-    //   actions.auth.isLogin(false);
-    // }, 2000);
+    setLoading(true);
+    setTimeout(() => {
+      actions.auth.logout();
+      setLoading(false);
+      actions.auth.isLogin(false);
+    }, 2000);
     console.log("recent item on async storage", getCartData());
   };
   // hooks
