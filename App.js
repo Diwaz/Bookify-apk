@@ -7,7 +7,11 @@ import { Provider, useSelector } from "react-redux";
 import "expo-dev-client";
 import store from "./redux/store";
 import Routes from "./navigation/Routes";
-import { getUserData } from "./utils/utils";
+import {
+  clearPurchasedData,
+  getPurchasedData,
+  getUserData,
+} from "./utils/utils";
 import { saveUserData } from "./redux/actions/auth";
 import Toast from "react-native-toast-message";
 import actions from "./redux/actions";
@@ -16,12 +20,17 @@ export default function App() {
   useEffect(() => {
     (async () => {
       const userData = await getUserData();
+
+      // const purchasedBooks = getPurchasedData();
       const booksData = await actions.auth.getBooks();
       const collegeData = await actions.auth.getCollege();
+
       actions.workflow.setBookData(booksData.data);
       actions.workflow.setCollegeData(collegeData.data);
+      //actions.workflow.setDownload(purchasedBooks);
 
       console.log("user data App.js", userData);
+
       if (!!userData) {
         saveUserData(userData);
       }

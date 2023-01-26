@@ -8,15 +8,17 @@ import {
 import React, { useState } from "react";
 const { width, height } = Dimensions.get("window");
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { getCartedPrice } from "../../utils/utils";
+import { getCartedPrice, savePurchasedBook } from "../../utils/utils";
 import { useSelector } from "react-redux";
-// import { KhatiSdk } from "rn-all-nepal-payment";
+import { KhatiSdk } from "rn-all-nepal-payment";
 import { useNavigation } from "@react-navigation/native";
+import actions from "../../redux/actions";
 
 const CheckOut = () => {
   const navigation = useNavigation();
   let totalPrice = useSelector((state) => state.workflow.totalPrice);
   let bookNames = useSelector((state) => state.workflow.productNames);
+  // const checkedBook = useSelector((state) => state.workflow.checkedBooks);
 
   let discount = 100;
   const [isVisible, setIsVisible] = useState(false);
@@ -33,6 +35,8 @@ const CheckOut = () => {
       console.log({ data: resp.data });
       setToken(resp.data.token);
       navigation.navigate("PaySuccess");
+      // savePurchasedBook(checkedBook);
+      actions.workflow.setDownload(bookNames);
     } else if (resp.event === "ERROR") {
       // console.log({ error: resp.data })
     }
@@ -147,15 +151,15 @@ const CheckOut = () => {
                 Rs {totalPrice}
                 <Ionicons name={"arrow-forward-outline"} color={"white"} />
               </Text>
-              {/* <KhatiSdk
-                amount={totalPrice} // Number in paisa
+              <KhatiSdk
+                amount={totalPrice * 10} // Number in paisa
                 isVisible={isVisible} // Bool to show model
                 paymentPreference={[
                   // Array of services needed from Khalti
                   "KHALTI",
-                  //   "EBANKING",
-                  //   "MOBILE_BANKING",
-                  //   "CONNECT_IPS",
+                  "EBANKING",
+                  "MOBILE_BANKING",
+                  "CONNECT_IPS",
                   //   "SCT",
                 ]}
                 productName={bookNames} // Name of product
@@ -163,7 +167,7 @@ const CheckOut = () => {
                 onPaymentComplete={_onPaymentComplete} // Callback from Khalti Web Sdk
                 productUrl={"http://gameofthrones.wikia.com/wiki/Dragons"} // Url of product
                 publicKey={"test_public_key_bd88477777d248f1bb37194df53121dd"} // Test or live public key which identifies the merchant
-              /> */}
+              />
             </View>
           </TouchableOpacity>
         ) : (

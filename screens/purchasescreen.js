@@ -8,21 +8,35 @@ import {
   Image,
   Dimensions,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as FileSystem from "expo-file-system";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 
 const { height, width } = Dimensions.get("window");
 
 const pdfUrl = "http://samples.leanpub.com/thereactnativebook-sample.pdf";
 
 const PurchaseScreen = ({ sectionName }) => {
+  const checkData = useSelector((state) => state.workflow.purchasedBooks);
+  const bookData = useSelector((state) => state.workflow.initialBookData);
+
   const password = "thisisveryverysecurePassword0708"; // The password used to encrypt/decrypt the file
   const [downloaded, setDownloaded] = useState(false);
+  const [getBook, setGetBook] = useState();
   const navigation = useNavigation();
   const [pdfUri, setPdfUri] = useState("");
-
+  console.log("downloaded bookData", checkData);
+  const dataarr = [];
+  for (let i = 0; i < checkData.length; i++) {
+    dataarr.push(
+      bookData.find((el) => {
+        return checkData[i] == el.name;
+      })
+    );
+  }
+  console.log("bookssssssss", dataarr);
   const downloadPdf = async () => {
     try {
       // // Download the PDF file
@@ -56,53 +70,53 @@ const PurchaseScreen = ({ sectionName }) => {
     }
   };
 
-  const bookData = [
-    {
-      id: 1,
-      bookName: "Data Structure & Algorithms",
-      image: require("../assets/Cover/cover1.jpeg"),
-      author: "Hari Bdr Neupane",
-      views: 4567,
-      upDate: "7 days",
-      price: 675,
-    },
-    // {
-    //   id: 2,
-    //   bookName: "The King of Drugs",
-    //   image: require("../assets/Cover/cover2.jpg"),
-    //   author: "Nora Barret",
-    //   views: 567,
-    //   upDate: "1 day",
-    //   price: 1000,
-    // },
-    // {
-    //   id: 3,
-    //   bookName: "Creative Business",
-    //   image: require("../assets/Cover/cover3.jpg"),
-    //   author: "Allan Watts",
-    //   views: 64567,
-    //   upDate: "3 months",
-    //   price: 6750,
-    // },
-    // {
-    //   id: 4,
-    //   bookName: "Creative Ideas",
-    //   image: require("../assets/Cover/cover4.jpg"),
-    //   author: "Andrew Schulz",
-    //   views: 40567,
-    //   upDate: "7 days",
-    //   price: 300,
-    // },
-    // {
-    //   id: 5,
-    //   bookName: "Creative Brain",
-    //   image: require("../assets/Cover/cover5.jpg"),
-    //   author: "George R. R. Martin",
-    //   views: 91345,
-    //   upDate: "21 days",
-    //   price: 2000,
-    // },
-  ];
+  // const bookData = [
+  //   {
+  //     id: 1,
+  //     bookName: "Data Structure & Algorithms",
+  //     image: require("../assets/Cover/cover1.jpeg"),
+  //     author: "Hari Bdr Neupane",
+  //     views: 4567,
+  //     upDate: "7 days",
+  //     price: 675,
+  //   },
+  //   // {
+  //   //   id: 2,
+  //   //   bookName: "The King of Drugs",
+  //   //   image: require("../assets/Cover/cover2.jpg"),
+  //   //   author: "Nora Barret",
+  //   //   views: 567,
+  //   //   upDate: "1 day",
+  //   //   price: 1000,
+  //   // },
+  //   // {
+  //   //   id: 3,
+  //   //   bookName: "Creative Business",
+  //   //   image: require("../assets/Cover/cover3.jpg"),
+  //   //   author: "Allan Watts",
+  //   //   views: 64567,
+  //   //   upDate: "3 months",
+  //   //   price: 6750,
+  //   // },
+  //   // {
+  //   //   id: 4,
+  //   //   bookName: "Creative Ideas",
+  //   //   image: require("../assets/Cover/cover4.jpg"),
+  //   //   author: "Andrew Schulz",
+  //   //   views: 40567,
+  //   //   upDate: "7 days",
+  //   //   price: 300,
+  //   // },
+  //   // {
+  //   //   id: 5,
+  //   //   bookName: "Creative Brain",
+  //   //   image: require("../assets/Cover/cover5.jpg"),
+  //   //   author: "George R. R. Martin",
+  //   //   views: 91345,
+  //   //   upDate: "21 days",
+  //   //   price: 2000,
+  //   // },
+  // ];
 
   const renderBooks = ({ item }) => (
     <View style={styles.itemWrapper}>
@@ -114,7 +128,12 @@ const PurchaseScreen = ({ sectionName }) => {
           }}
         ></View> */}
       <View style={styles.imageWrapper}>
-        <Image source={`${item.image}`} style={styles.image} />
+        <Image
+          source={{
+            uri: `https://shineducation.com${item.image}`,
+          }}
+          style={styles.image}
+        />
       </View>
       <View style={styles.infowrapper}>
         <Text
@@ -124,7 +143,7 @@ const PurchaseScreen = ({ sectionName }) => {
             fontSize: 16,
           }}
         >
-          {item.bookName}
+          {item.name}
         </Text>
         <Text
           style={{
@@ -153,7 +172,7 @@ const PurchaseScreen = ({ sectionName }) => {
             </Text>
           </View>
         </TouchableOpacity>
-        {!downloaded && (
+        {/* {!downloaded && (
           <TouchableOpacity onPress={downloadPdf}>
             <View style={styles.controlLayout2}>
               <Text
@@ -166,7 +185,7 @@ const PurchaseScreen = ({ sectionName }) => {
               </Text>
             </View>
           </TouchableOpacity>
-        )}
+        )} */}
       </View>
     </View>
   );
@@ -178,7 +197,7 @@ const PurchaseScreen = ({ sectionName }) => {
 
       <FlatList
         showsHorizontalScrollIndicator={false}
-        data={bookData}
+        data={dataarr}
         renderItem={renderBooks}
       />
     </View>

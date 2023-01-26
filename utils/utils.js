@@ -114,6 +114,10 @@ export function setUserData(data) {
     data = JSON.stringify(data);
     return AsyncStorage.setItem('userData', data);
 }
+export function savePurchasedBook(data) {
+    data = JSON.stringify(data);
+    return AsyncStorage.setItem('PurchasedBooks', data);
+}
 export function setCartData(data) {
     data = JSON.stringify(data);
     return AsyncStorage.setItem('cartData', data);
@@ -122,6 +126,13 @@ export function setCartData(data) {
 export async function getUserData() {
     return new Promise((resolve, reject) => {
         AsyncStorage.getItem('userData').then(data => {
+            resolve(JSON.parse(data));
+        });
+    });
+}
+export async function getPurchasedData() {
+    return new Promise((resolve, reject) => {
+        AsyncStorage.getItem('PurchasedBooks').then(data => {
             resolve(JSON.parse(data));
         });
     });
@@ -135,6 +146,9 @@ export async function getCartData() {
 }
 export async function clearUserData() {
     return AsyncStorage.removeItem('userData');
+}
+export async function clearPurchasedData() {
+    return AsyncStorage.removeItem('PurchasedBooks');
 }
 export const getCartedData = () => {
     const cartData = useSelector((state) => state.workflow.initialBookData);

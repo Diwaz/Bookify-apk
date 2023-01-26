@@ -7,7 +7,9 @@ const initial_state = {
     totalPrice: 0,
     productNames: [],
     initialBookData: [],
-    collegeData: []
+    collegeData: [],
+    purchasedBooks: [],
+    checkedBooks: [],
 }
 
 export default function(state = initial_state, action) {
@@ -46,6 +48,14 @@ export default function(state = initial_state, action) {
         case types.SET_COLLEGE_DATA:
             return {...state,
                 collegeData: action.payload
+            }
+        case types.SET_TO_DOWNLOADS:
+            return {...state,
+                checkedBooks: [...state.checkedBooks, action.payload]
+            }
+        case types.GET_DOWNLOADS:
+            return {...state,
+                purchasedBooks: [...action.payload]
             }
 
         default:

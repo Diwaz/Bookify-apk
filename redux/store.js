@@ -9,4 +9,10 @@ import rootReducer from './reducer';
 
 const middlewares = [thunk];
 
-export default configureStore({ reducer: rootReducer }, applyMiddleware(...middlewares))
+export default configureStore({
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: false,
+        }),
+}, applyMiddleware(...middlewares))

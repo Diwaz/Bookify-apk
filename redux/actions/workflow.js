@@ -13,6 +13,18 @@ export function addToCart(data) {
         payload: data
     })
 }
+export function addToDownload(data) {
+    dispatch({
+        type: types.SET_TO_DOWNLOADS,
+        payload: data
+    })
+}
+export function setDownload(data) {
+    dispatch({
+        type: types.GET_DOWNLOADS,
+        payload: data
+    })
+}
 export function setCartPrice(data) {
     dispatch({
         type: types.SET_TOTAL,

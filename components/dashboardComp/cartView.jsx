@@ -28,8 +28,9 @@ const CartView = () => {
   useEffect(() => {
     let tprice = getPrice(checked);
     let pNames = getProductNames(checked);
-
+    let checkedProduct = getProduct(checked);
     actions.workflow.setCartPrice(tprice);
+    actions.workflow.addToDownload(checkedProduct);
     actions.workflow.setProductNames(pNames);
   }, [checked]);
   const getPrice = (item) => {
@@ -51,6 +52,18 @@ const CartView = () => {
       });
     console.log("total Price from fxn", checked);
     return totalPrice;
+  };
+  const getProduct = (item) => {
+    let Idarr = item;
+    let dataarr = [];
+    for (let i = 0; i < Idarr.length; i++) {
+      dataarr.push(
+        cartData.find((el) => {
+          return Idarr[i] === el._id;
+        })
+      );
+    }
+    return dataarr;
   };
   const getProductNames = (item) => {
     let Idarr = item;
