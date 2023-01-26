@@ -1,11 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, ScrollView, Text, StyleSheet, Image } from "react-native";
+import {
+  View,
+  ScrollView,
+  Text,
+  StyleSheet,
+  Image,
+  Dimensions,
+} from "react-native";
 
 let currentIndex = 0;
 const childCount = 3;
 const ContainerWidth = 400;
 const childrenHeight = 200;
 const reqMargin = (ContainerWidth - childrenHeight) / 7;
+
+const { width, height } = Dimensions.get("window");
 const WelcomeBoard = () => {
   const [modelHeight, setmodelHeight] = useState(0);
   const [autoplay, setAutoPlay] = useState(true);
@@ -68,19 +77,19 @@ const WelcomeBoard = () => {
         <View style={[styles.carsoulContainer, {}]}>
           <Image
             source={require("../assets/cover1.jpg")}
-            style={{ width: 350, height: 200, borderRadius: 10 }}
+            style={{ width: width, height: 200 }}
           />
         </View>
         <View style={[styles.carsoulContainer, { backgroundColor: "yellow" }]}>
           <Image
             source={require("../assets/cover2.jpg")}
-            style={{ width: 350, height: 200, borderRadius: 10 }}
+            style={{ width: width, height: 200 }}
           />
         </View>
         <View style={[styles.carsoulContainer, { backgroundColor: "red" }]}>
           <Image
             source={require("../assets/cover3.jpg")}
-            style={{ width: 350, height: 200, borderRadius: 10 }}
+            style={{ width: width, height: 200 }}
           />
         </View>
         {/* <View
@@ -94,10 +103,10 @@ const WelcomeBoard = () => {
 
 const styles = StyleSheet.create({
   carsoulContainer: {
-    width: 350,
+    width: width,
     height: 200,
     // backgroundColor: "red",
-    margin: reqMargin,
+    //margin: reqMargin,
     borderRadius: 10,
   },
 });

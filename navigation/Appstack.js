@@ -172,13 +172,13 @@ const Appstack = () => {
                 size={23}
                 color={focused ? "#1C2363" : "#748c94"}
               />
-              {/* <Text
+              <Text
                 style={{
                   color: focused ? "#1C2363" : "#748c94",
                 }}
               >
                 Home
-              </Text> */}
+              </Text>
             </View>
           ),
         }}
@@ -195,17 +195,17 @@ const Appstack = () => {
               }}
             >
               <Ionicons
-                name={"magnet"}
+                name={"business"}
                 size={23}
                 color={focused ? "#1C2363" : "#748c94"}
               />
-              {/* <Text
+              <Text
                 style={{
                   color: focused ? "#1C2363" : "#748c94",
                 }}
               >
-                Offer
-              </Text> */}
+                Institutions
+              </Text>
             </View>
           ),
         }}
@@ -243,13 +243,13 @@ const Appstack = () => {
                 size={23}
                 color={focused ? "#1C2363" : "#748c94"}
               />
-              {/* <Text
+              <Text
                 style={{
                   color: focused ? "#1C2363" : "#748c94",
                 }}
               >
                 Profile
-              </Text> */}
+              </Text>
             </View>
           ),
         }}
@@ -270,13 +270,13 @@ const Appstack = () => {
                 size={23}
                 color={focused ? "#1C2363" : "#748c94"}
               />
-              {/* <Text
+              <Text
                 style={{
                   color: focused ? "#1C2363" : "#748c94",
                 }}
               >
                 Setting
-              </Text> */}
+              </Text>
             </View>
           ),
         }}
