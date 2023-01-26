@@ -10,61 +10,11 @@ import {
 import React from "react";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
-
+import { useSelector } from "react-redux";
 const { height, width } = Dimensions.get("window");
 
 const InstitutionDisplay = ({ sectionName }) => {
-  const collegeData = [
-    {
-      id: 1,
-      collegeName: "SXC",
-      image: require("../assets/Cover/sxc.png"),
-      address: "Maitighar,Ktm.",
-      level: "+2/BE/CSIT",
-    },
-    {
-      id: 2,
-      collegeName: "APEX College",
-      image: require("../assets/Cover/islington.png"),
-      address: "DevkotaSadak,Ktm.",
-      level: "BBA/BBS",
-    },
-    {
-      id: 3,
-      collegeName: "Islington College",
-      image: require("../assets/Cover/islington.png"),
-      address: "Kamal Marg, Ktm.",
-      level: "BIT/BSCsit/BE",
-    },
-    {
-      id: 4,
-      collegeName: "IIMS",
-      image: require("../assets/Cover/sxc.png"),
-      address: "Tinkune, Ktm.",
-      level: "BE/BIT/IT",
-    },
-    {
-      id: 5,
-      collegeName: "DAV college",
-      image: require("../assets/Cover/islington.png"),
-      address: "Jawalakhel,Lalitpur",
-      level: "+2/BE",
-    },
-    {
-      id: 6,
-      collegeName: "IIMS",
-      image: require("../assets/Cover/sxc.png"),
-      address: "Tinkune, Ktm.",
-      level: "BE/BIT/IT",
-    },
-    {
-      id: 7,
-      collegeName: "DAV college",
-      image: require("../assets/Cover/islington.png"),
-      address: "Jawalakhel,Lalitpur",
-      level: "+2/BE",
-    },
-  ];
+  const collegeData = useSelector((state) => state.workflow.collegeData);
 
   const renderInstitute = ({ item }) => (
     <View style={styles.itemWrapper}>
@@ -76,7 +26,10 @@ const InstitutionDisplay = ({ sectionName }) => {
             }}
           ></View> */}
       <View style={styles.imageWrapper}>
-        <Image source={`${item.image}`} style={styles.image} />
+        <Image
+          source={{ uri: `https://shineducation.com${item.image}` }}
+          style={styles.image}
+        />
       </View>
       <View style={styles.infowrapper}>
         <Text
@@ -86,7 +39,7 @@ const InstitutionDisplay = ({ sectionName }) => {
             fontSize: 16,
           }}
         >
-          {item.collegeName}
+          {item.name}
         </Text>
         <Text
           style={{

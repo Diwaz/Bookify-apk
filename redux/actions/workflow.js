@@ -31,6 +31,12 @@ export function setBookData(data) {
         payload: data
     })
 }
+export function setCollegeData(data) {
+    dispatch({
+        type: types.SET_COLLEGE_DATA,
+        payload: data
+    })
+}
 export function deleteFromCart(data) {
     dispatch({
         type: types.DELETE_FROM_CART,

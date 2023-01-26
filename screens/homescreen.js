@@ -60,7 +60,7 @@ const Homescreen = ({ navigation }) => {
         <BottomComponent>
           <List category title="Top Category" />
 
-          <List college title="Top Rated Colleges" />
+          <List book title="Top Rated Books" />
         </BottomComponent>
         <View style={{ height: 100 }}></View>
       </ScrollView>

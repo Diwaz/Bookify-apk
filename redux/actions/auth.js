@@ -1,4 +1,4 @@
-import { GET_BOOKS, LOGIN, SIGNUP } from "../../config/Urls";
+import { GET_BOOKS, GET_COLLEGE, LOGIN, SIGNUP } from "../../config/Urls";
 import { apiGet, apiPost, clearUserData, setUserData } from "../../utils/utils";
 import store from "../store";
 import types from "../types";
@@ -36,6 +36,9 @@ export function signUp(data) {
 
 export function getBooks(data) {
     return apiGet(GET_BOOKS, data)
+}
+export function getCollege(data) {
+    return apiGet(GET_COLLEGE, data)
 }
 
 export function isLogin(data) {

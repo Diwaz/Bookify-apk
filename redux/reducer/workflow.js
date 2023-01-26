@@ -6,7 +6,8 @@ const initial_state = {
     cartData: [],
     totalPrice: 0,
     productNames: [],
-    initialBookData: []
+    initialBookData: [],
+    collegeData: []
 }
 
 export default function(state = initial_state, action) {
@@ -41,6 +42,10 @@ export default function(state = initial_state, action) {
         case types.SET_BOOK_DATA:
             return {...state,
                 initialBookData: action.payload
+            }
+        case types.SET_COLLEGE_DATA:
+            return {...state,
+                collegeData: action.payload
             }
 
         default:

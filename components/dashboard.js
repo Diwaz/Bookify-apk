@@ -53,6 +53,8 @@ const Dashboard = ({
   bookName,
   bookAuth,
   bookImg,
+  collegeName,
+  CollegeImg,
   views,
   uptime,
   price,
@@ -204,6 +206,18 @@ const Dashboard = ({
                   >
                     {bookName}
                   </Text>
+                  {CollegeInfo && (
+                    <Text
+                      style={{
+                        fontFamily: "RudaB",
+                        color: "#1C2363",
+                        fontSize: 20,
+                      }}
+                    >
+                      {collegeName}
+                    </Text>
+                  )}
+
                   <View
                     style={{
                       display: "flex",
@@ -265,7 +279,7 @@ const Dashboard = ({
                 onPress={logout}
               >
                 {bell && <FontAwesome5 name={"bell"} size={18} />}
-                {edit && <Ionicons name={"construct"} size={18} />}
+                {edit && <Ionicons name={"log-out-outline"} size={18} />}
               </TouchableOpacity>
             </View>
           </View>
@@ -428,7 +442,7 @@ const Dashboard = ({
                   <View style={{ flex: 1 }}>
                     <Image
                       source={{
-                        uri: `${bookImg}`,
+                        uri: `https://shineducation.com${bookImg}`,
                       }}
                       style={{
                         width: 89,

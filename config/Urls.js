@@ -13,3 +13,4 @@ export const GET_USERS = getApiUrl('/user');
 export const LOGIN = getApiUrl('/users/login');
 export const SIGNUP = getApiUrl('/users/signup');
 export const GET_BOOKS = getApiUrl('/books/getAll');
+export const GET_COLLEGE = getApiUrl('/institution/getAll');

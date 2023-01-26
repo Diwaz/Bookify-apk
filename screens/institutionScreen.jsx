@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import actions from "../redux/actions";
 
 const InstitutionScreen = ({ route }) => {
-  const { bookName, bookImg, id, address } = route.params;
+  const { collegeName, bookImg, id, address } = route.params;
   console.log("bookId", id);
 
   const cartData = useSelector((state) => state.workflow.cartData);
@@ -26,7 +26,7 @@ const InstitutionScreen = ({ route }) => {
           displayP={"flex"}
           CollegeInfo
           id={id}
-          bookName={bookName}
+          collegeName={collegeName}
           bookImg={bookImg}
           address={address}
         />

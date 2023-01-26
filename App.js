@@ -17,8 +17,9 @@ export default function App() {
     (async () => {
       const userData = await getUserData();
       const booksData = await actions.auth.getBooks();
-
+      const collegeData = await actions.auth.getCollege();
       actions.workflow.setBookData(booksData.data);
+      actions.workflow.setCollegeData(collegeData.data);
 
       console.log("user data App.js", userData);
       if (!!userData) {

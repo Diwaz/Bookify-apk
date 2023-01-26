@@ -23,7 +23,7 @@ const Profilescreen = () => {
         <Dashboard edit dualdeck profile displayP={"flex"} />
       </MidComponent>
       <BottomComponent>
-        <List book title="Recently Purchase" />
+        <List book title="Recommended" />
       </BottomComponent>
     </SafeAreaView>
   );

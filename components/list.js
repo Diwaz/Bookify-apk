@@ -19,6 +19,7 @@ const { width, height } = Dimensions.get("window");
 
 const List = ({ category, book, title, college }) => {
   const bookData = useSelector((state) => state.workflow.initialBookData);
+  const collegeData = useSelector((state) => state.workflow.collegeData);
   console.log("api books", bookData);
   const navigation = useNavigation();
   const categoryData = [
@@ -94,50 +95,50 @@ const List = ({ category, book, title, college }) => {
   //     price: 2000,
   //   },
   // ];
-  const collegeData = [
-    {
-      id: 1,
-      collegeName: "SXC",
-      image: require("../assets/Cover/sxc.png"),
-      address: "Maitighar,Ktm.",
-      level: "+2/BE/CSIT",
-    },
-    {
-      id: 2,
-      collegeName: "APEX College",
-      image: require("../assets/Cover/islington.png"),
-      address: "DevkotaSadak,Ktm.",
-      level: "BBA/BBS",
-    },
-    {
-      id: 3,
-      collegeName: "Islington College",
-      image: require("../assets/Cover/islington.png"),
-      address: "Kamal Marg, Ktm.",
-      level: "BIT/BSCsit/BE",
-    },
-    {
-      id: 4,
-      collegeName: "IIMS",
-      image: require("../assets/Cover/sxc.png"),
-      address: "Tinkune, Ktm.",
-      level: "BE/BIT/IT",
-    },
-    {
-      id: 5,
-      collegeName: "DAV college",
-      image: require("../assets/Cover/islington.png"),
-      address: "Jawalakhel,Lalitpur",
-      level: "+2/BE",
-    },
-    {
-      id: 6,
-      collegeName: "NCTTM",
-      image: require("../assets/Cover/sxc.png"),
-      address: "Uttardhoka,Ktm.",
-      level: "+2/BE",
-    },
-  ];
+  // const collegeData = [
+  //   {
+  //     id: 1,
+  //     collegeName: "SXC",
+  //     image: require("../assets/Cover/sxc.png"),
+  //     address: "Maitighar,Ktm.",
+  //     level: "+2/BE/CSIT",
+  //   },
+  //   {
+  //     id: 2,
+  //     collegeName: "APEX College",
+  //     image: require("../assets/Cover/islington.png"),
+  //     address: "DevkotaSadak,Ktm.",
+  //     level: "BBA/BBS",
+  //   },
+  //   {
+  //     id: 3,
+  //     collegeName: "Islington College",
+  //     image: require("../assets/Cover/islington.png"),
+  //     address: "Kamal Marg, Ktm.",
+  //     level: "BIT/BSCsit/BE",
+  //   },
+  //   {
+  //     id: 4,
+  //     collegeName: "IIMS",
+  //     image: require("../assets/Cover/sxc.png"),
+  //     address: "Tinkune, Ktm.",
+  //     level: "BE/BIT/IT",
+  //   },
+  //   {
+  //     id: 5,
+  //     collegeName: "DAV college",
+  //     image: require("../assets/Cover/islington.png"),
+  //     address: "Jawalakhel,Lalitpur",
+  //     level: "+2/BE",
+  //   },
+  //   {
+  //     id: 6,
+  //     collegeName: "NCTTM",
+  //     image: require("../assets/Cover/sxc.png"),
+  //     address: "Uttardhoka,Ktm.",
+  //     level: "+2/BE",
+  //   },
+  // ];
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={style.flatlistwrapper}
@@ -201,8 +202,8 @@ const List = ({ category, book, title, college }) => {
       onPress={() => {
         /* 1. Navigate to the Details route with params */
         navigation.navigate("InstitutionDetails", {
-          id: item.id,
-          collegeName: item.collegeName,
+          id: item._id,
+          collegeName: item.name,
           bookImg: item.image,
           address: item.address,
           seats: item.seats,
@@ -217,7 +218,9 @@ const List = ({ category, book, title, college }) => {
               height: 74,
               marginBottom: 10,
             }}
-            source={`${item.image}`}
+            source={{
+              uri: `https://shineducation.com${item.image}`,
+            }}
           />
         )}
       </View>
@@ -233,7 +236,7 @@ const List = ({ category, book, title, college }) => {
             }}
           >
             {" "}
-            {item.collegeName}
+            {item.name}
           </Text>
         )}
       </View>

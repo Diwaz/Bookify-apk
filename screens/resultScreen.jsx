@@ -37,7 +37,7 @@ const Resultscreen = ({ route }) => {
     } else {
       setIsLoading(false);
     }
-  }, 5000);
+  }, 2000);
   const cartData = useSelector((state) => state.workflow.cartData);
 
   //const isCarted = cartData.some(item => item.id === id);
@@ -76,7 +76,11 @@ const Resultscreen = ({ route }) => {
         )}
       </MidComponent>
       <BottomComponent>
-        <InfoModal />
+        {isLoading ? (
+          <InfoModal />
+        ) : (
+          <ActivityIndicator size="large" color="#1C2363" />
+        )}
       </BottomComponent>
     </SafeAreaView>
   );
