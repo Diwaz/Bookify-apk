@@ -10,6 +10,7 @@ import NavigateLockscreen from './navigateLockscreen';
 import CategoryDisplay from './categoryDisplay';
 import CollegeModal from './CollegeInfoModel';
 import WelcomeBoard from './welcomeBoard';
+import InstitutionDisplay from './institutionDisplay';
 
 
 
@@ -26,6 +27,7 @@ export {
     CategoryDisplay,
     CollegeModal,
 
-    WelcomeBoard
+    WelcomeBoard,
+    InstitutionDisplay
 
 }

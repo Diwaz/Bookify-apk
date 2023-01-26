@@ -7,6 +7,7 @@ import {
   Image,
   Dimensions,
 } from "react-native";
+import { useSelector } from "react-redux";
 
 let currentIndex = 0;
 const childCount = 3;
@@ -16,6 +17,7 @@ const reqMargin = (ContainerWidth - childrenHeight) / 7;
 
 const { width, height } = Dimensions.get("window");
 const WelcomeBoard = () => {
+  const userData = useSelector((state) => state.auth.userData);
   const [modelHeight, setmodelHeight] = useState(0);
   const [autoplay, setAutoPlay] = useState(true);
   var timerId;
@@ -41,7 +43,10 @@ const WelcomeBoard = () => {
     stopAutoPlay();
 
     let nextIndex = (currentIndex + 1) % childCount;
-    SCROLLVIEW_REF.current.scrollTo({ x: modelHeight * nextIndex });
+    {
+      // userData.data &&
+      SCROLLVIEW_REF.current.scrollTo({ x: modelHeight * nextIndex });
+    }
   };
   const onScrollViewLayout = (event) => {
     let { width } = event.nativeEvent.layout;

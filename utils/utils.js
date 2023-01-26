@@ -2,7 +2,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import store from '../redux/store';
 import types from '../redux/types';
-import { cartData } from '../components/dashboardComp/cartData';
+
 import { useSelector } from 'react-redux';
 
 const { dispatch, getState } = store;
@@ -137,15 +137,17 @@ export async function clearUserData() {
     return AsyncStorage.removeItem('userData');
 }
 export const getCartedData = () => {
+    const cartData = useSelector((state) => state.workflow.initialBookData);
     const cartId = useSelector((state) => state.workflow.cartData)
     let Idarr = [];
     let dataarr = [];
     Idarr = cartId.map((item) => {
         return item.id;
     })
+    console.log('idarrr', Idarr)
     for (let i = 0; i < Idarr.length; i++) {
         dataarr.push(cartData.find((el) => {
-            return Idarr[i] === el.id;
+            return Idarr[i] === el._id;
         }))
     }
     console.log("Items in cart from getcart", dataarr)

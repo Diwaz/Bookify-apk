@@ -10,7 +10,7 @@ import {
 import React, { useEffect, useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import CheckBox from "expo-checkbox";
-
+import { useSelector } from "react-redux";
 import {
   getCartData,
   getCartedData,
@@ -18,11 +18,12 @@ import {
   getUserData,
   setCartData,
 } from "../../utils/utils";
-import { cartData } from "./cartData";
+
 import actions from "../../redux/actions";
 
 const { width, height } = Dimensions.get("window");
 const CartView = () => {
+  const cartData = useSelector((state) => state.workflow.initialBookData);
   const [checked, setChecked] = useState([]);
   useEffect(() => {
     let tprice = getPrice(checked);
@@ -37,17 +38,18 @@ const CartView = () => {
     for (let i = 0; i < Idarr.length; i++) {
       dataarr.push(
         cartData.find((el) => {
-          return Idarr[i] === el.id;
+          return Idarr[i] === el._id;
         })
       );
     }
+
     let totalPrice = 0;
     dataarr
       .filter((res) => res.price)
       .map((el) => {
         totalPrice = totalPrice + el.price;
       });
-    console.log(totalPrice);
+    console.log("total Price from fxn", checked);
     return totalPrice;
   };
   const getProductNames = (item) => {
@@ -56,22 +58,23 @@ const CartView = () => {
     for (let i = 0; i < Idarr.length; i++) {
       dataarr.push(
         cartData.find((el) => {
-          return Idarr[i] === el.id;
+          return Idarr[i] === el._id;
         })
       );
     }
 
     let productNames = [];
     dataarr
-      .filter((res) => res.bookName)
+      .filter((res) => res.name)
       .map((el) => {
-        productNames.push(el.bookName);
+        productNames.push(el.name);
       });
     console.log("Only book names are", productNames);
     return productNames;
   };
 
   const cartItems = getCartedData();
+  console.log("cart items from cart ", cartItems);
   const deleteCartItems = (id, idx) => {
     actions.workflow.deleteFromCart({
       id,
@@ -94,14 +97,14 @@ const CartView = () => {
         }}
       >
         <CheckBox
-          value={checked.includes(item.id)}
+          value={checked.includes(item._id)}
           onValueChange={() => {
             const newIds = [...checked];
-            const index = newIds.indexOf(item.id);
+            const index = newIds.indexOf(item._id);
             if (index > -1) {
               newIds.splice(index, 1);
             } else {
-              newIds.push(item.id);
+              newIds.push(item._id);
             }
 
             setChecked(newIds);
@@ -118,7 +121,7 @@ const CartView = () => {
             color: "#1C2363",
           }}
         >
-          {item.bookName}
+          {item.name}
         </Text>
         <Text
           style={{
@@ -136,13 +139,13 @@ const CartView = () => {
 
               Idarr.push(
                 cartItems.map((item) => {
-                  return item.id;
+                  return item._id;
                 })
               );
               console.log("array of cart items", Idarr[0]);
-              let idx = Idarr[0].indexOf(item.id);
+              let idx = Idarr[0].indexOf(item._id);
               console.log("index of dis", idx);
-              deleteCartItems(item.id, idx);
+              deleteCartItems(item._id, idx);
             }}
           >
             <Ionicons name={"trash-outline"} size={16} color={"red"} />
@@ -168,13 +171,13 @@ const CartView = () => {
             onValueChange={() => {
               const newIds = [...checked];
               cartItems.map((t) => {
-                const index = newIds.indexOf(t.id);
+                const index = newIds.indexOf(t._id);
                 if (index > -1 && cartItems.length == checked.length) {
                   newIds.splice(index, 1);
                 } else if (index > -1 && cartItems.length != checked.length) {
                   return;
                 } else {
-                  newIds.push(t.id);
+                  newIds.push(t._id);
                 }
                 setChecked(newIds);
               });
@@ -192,7 +195,7 @@ const CartView = () => {
           showsVerticalScrollIndicator={false}
           data={cartItems}
           renderItem={renderCart}
-          keyExtractor={(item) => item.id.toString()}
+          // keyExtractor={(item) => item.id}
           extraData={checked}
         />
       </View>

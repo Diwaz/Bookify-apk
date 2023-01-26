@@ -25,6 +25,12 @@ export function setProductNames(data) {
         payload: data
     })
 }
+export function setBookData(data) {
+    dispatch({
+        type: types.SET_BOOK_DATA,
+        payload: data
+    })
+}
 export function deleteFromCart(data) {
     dispatch({
         type: types.DELETE_FROM_CART,

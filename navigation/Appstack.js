@@ -216,7 +216,7 @@ const Appstack = () => {
         options={{
           tabBarIcon: ({ focused }) => (
             <Ionicons
-              name={"receipt"}
+              name={"folder-open"}
               size={25}
               style={{
                 color: "#fff",

@@ -64,11 +64,11 @@ const Resultscreen = ({ route }) => {
             BookInfo
             id={id}
             bookName={bookName}
-            bookAuth={bookAuth}
+            bookAuth={selectedCourse[0].author}
             bookImg={selectedCourse[0].image}
-            price={price}
-            views={views}
-            uptime={uptime}
+            price={selectedCourse[0].price}
+            views={444}
+            uptime={"11 Jan"}
             iscarted={findObject(cartData, id)}
           />
         ) : (

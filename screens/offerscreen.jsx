@@ -1,145 +1,121 @@
-import { View, Text, StyleSheet, Dimensions, SafeAreaView } from "react-native";
-import React from "react";
-import SuccessSVG from "../assets/SVGs/success";
+import React, { useRef, useState } from "react";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Dimensions,
+  Platform,
+  TouchableOpacity,
+} from "react-native";
+import ImageHeaderScrollView, {
+  TriggeringView,
+} from "react-native-image-header-scroll-view";
 
-const { width, height } = Dimensions.get("window");
-const OfferScreen = () => {
+import * as Animatable from "react-native-animatable";
+import { useNavigation } from "@react-navigation/native";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { CategoryDisplay, InstitutionDisplay } from "../components";
+
+const MIN_HEIGHT = Platform.OS === "ios" ? 90 : 120;
+const MAX_HEIGHT = 350;
+
+const OfferScreen = ({ route }) => {
+  const navigation = useNavigation();
+  let [showTitle, setShowTitle] = useState(false);
+  const navTitleView = useRef(null);
+
   return (
-    <SafeAreaView
-      style={{
-        backgroundColor: "#1C23631A",
-        width: width,
-        height: height,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <View style={style.billWrapper}>
-        <View style={style.SVGwrapper}>
-          <SuccessSVG width={200} height={200} />
-          <Text style={{ fontFamily: "RudaB", fontSize: 16 }}>
-            Payment Success
-          </Text>
+    <View style={styles.container}>
+      <ImageHeaderScrollView
+        maxHeight={300}
+        minHeight={MIN_HEIGHT}
+        maxOverlayOpacity={0.6}
+        minOverlayOpacity={0.3}
+        renderHeader={() => (
+          <Image
+            source={require("../assets/Cover/cover7.jpg")}
+            style={styles.image}
+          />
+        )}
+        renderFixedForeground={() => (
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              paddingHorizontal: 20,
+              paddingVertical: 10,
+            }}
+          >
+            <TouchableOpacity onPress={() => navigation.navigate("Homescreen")}>
+              <View style={styles.backBtn}>
+                <Ionicons name="chevron-back-outline" color="white" size={25} />
+              </View>
+            </TouchableOpacity>
+            <Animatable.View style={styles.navTitleView} ref={navTitleView}>
+              {showTitle && <Text style={styles.navTitle}>Institutions</Text>}
+            </Animatable.View>
+          </View>
+        )}
+      >
+        <View style={{ height: 1000 }}>
+          <TriggeringView
+            onBeginHidden={() => {
+              setShowTitle(true);
+              navTitleView.current.fadeInUp(200);
+              console.log(showTitle, "up here");
+            }}
+            onDisplay={() => {
+              setShowTitle(false);
+              navTitleView.current.fadeOut(100);
+              console.log("thiiii", showTitle);
+            }}
+          >
+            <InstitutionDisplay sectionName="Institutions" />
+          </TriggeringView>
         </View>
-        <View style={style.detailWrapper}>
-          <View style={style.rowDetail}>
-            <Text style={style.attrFont}>Transaction Code</Text>
-            <Text style={style.ansFont}>BOKFY-214324234</Text>
-          </View>
-          <View style={style.rowDetail}>
-            <Text style={style.attrFont}>Date/Time</Text>
-            <Text style={style.ansFont}>8 Jan 2023 , 10:10 PM</Text>
-          </View>
-          <View style={style.rowDetail}>
-            <Text style={style.attrFont}>Status</Text>
-            <View style={style.statusCSS}>
-              <Text style={{ color: "white" }}>COMPLETED</Text>
-            </View>
-          </View>
-          <View style={style.rowDetail}>
-            <Text style={style.attrFont}>Amount(NPR)</Text>
-            <Text style={style.ansFont}>2000</Text>
-          </View>
-          <View style={style.rowDetail}>
-            <Text style={style.attrFont}>Service Name</Text>
-            <Text style={style.ansFont}>Khalti Wallet</Text>
-          </View>
-          <View style={style.rowDetail}>
-            <Text style={style.attrFont}>Product Name</Text>
-            <Text style={style.ansFont}>Creative Ideas</Text>
-          </View>
-        </View>
-        <View style={style.buttonWrapper}>
-          <View style={style.btn1}>
-            <Text style={{ color: "white", fontFamily: "RudaB", fontSize: 16 }}>
-              Go To Library
-            </Text>
-          </View>
-          <View style={style.btn2}>
-            <Text style={{ color: "grey", fontFamily: "RudaB", fontSize: 16 }}>
-              Go To Homepage
-            </Text>
-          </View>
-        </View>
-      </View>
-    </SafeAreaView>
+      </ImageHeaderScrollView>
+    </View>
   );
 };
 
-const style = StyleSheet.create({
-  SVGwrapper: {
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  billWrapper: {
-    height: 0.9 * height,
-    width: 0.95 * width,
-    backgroundColor: "white",
+export default OfferScreen;
 
-    shadowColor: "#7F5DF0",
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.5,
-    elevation: 5,
-    borderRadius: 10,
-    alignItems: "center",
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    //marginTop: 30,
   },
-  detailWrapper: {
-    width: 0.85 * width,
-    height: 0.4 * height,
-    backgroundColor: "white",
-    borderTopWidth: 2,
-    borderBottomColor: "black",
-    borderBottomWidth: 2,
-    borderTopColor: "black",
-    marginTop: 15,
+  image: {
+    height: MAX_HEIGHT,
+    width: Dimensions.get("window").width,
+    alignSelf: "stretch",
+    resizeMode: "cover",
+  },
+  backBtn: {
+    zIndex: 2,
+    position: "relative",
+    top: 50,
+
+    backgroundColor: "rgba(0, 0, 0, 0.6)",
+    height: 30,
+    width: 30,
+    borderRadius: 15,
+    alignItems: "center",
+    justifyContent: "center",
   },
 
-  attrFont: {
-    color: "#666666",
-    fontFamily: "RudaR",
-  },
-  ansFont: {
-    color: "black",
-    fontFamily: "RudaR",
-  },
-  statusCSS: {
-    backgroundColor: "red",
-    padding: 3,
-    borderRadius: 5,
-  },
-  btn1: {
-    width: 0.75 * width,
-    height: 0.06 * height,
-    backgroundColor: "#1C2363",
-    borderRadius: 5,
+  navTitleView: {
+    height: MIN_HEIGHT,
     justifyContent: "center",
     alignItems: "center",
-    margin: 2,
+    paddingTop: Platform.OS === "ios" ? 40 : 5,
+    opacity: 0,
   },
-  btn2: {
-    width: 0.75 * width,
-    height: 0.06 * height,
-    backgroundColor: "white",
-    borderRadius: 5,
-    justifyContent: "center",
-    alignItems: "center",
-    borderColor: "#1C2363",
-    borderWidth: 2,
-    margin: 2,
-  },
-  buttonWrapper: {
-    padding: 10,
-  },
-  rowDetail: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    margin: 15,
+  navTitle: {
+    color: "white",
+    fontSize: 18,
+    backgroundColor: "transparent",
+    fontFamily: "RudaB",
   },
 });
-
-export default OfferScreen;
