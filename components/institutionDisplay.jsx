@@ -12,61 +12,77 @@ import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useSelector } from "react-redux";
 const { height, width } = Dimensions.get("window");
+import { useNavigation } from "@react-navigation/native";
 
 const InstitutionDisplay = ({ sectionName }) => {
+  const navigation = useNavigation();
+
   const collegeData = useSelector((state) => state.workflow.collegeData);
 
   const renderInstitute = ({ item }) => (
-    <View style={styles.itemWrapper}>
-      {/* <View
+    <TouchableOpacity
+      onPress={() => {
+        /* 1. Navigate to the Details route with params */
+        navigation.navigate("InstitutionDetails", {
+          id: item._id,
+          collegeName: item.name,
+          bookImg: item.image,
+          address: item.address,
+          seats: item.seats,
+        });
+      }}
+    >
+      <View style={styles.itemWrapper}>
+        {/* <View
             style={{
               flex: 1,
               justifyContent: "center",
               alignItems: "center",
             }}
           ></View> */}
-      <View style={styles.imageWrapper}>
-        <Image
-          source={{ uri: `https://shineducation.com${item.image}` }}
-          style={styles.image}
-        />
-      </View>
-      <View style={styles.infowrapper}>
-        <Text
-          style={{
-            fontFamily: "RudaR",
-            color: "#1C2363",
-            fontSize: 16,
-          }}
-        >
-          {item.name}
-        </Text>
-        <Text
-          style={{
-            fontFamily: "RudaR",
-            fontSize: 10,
-          }}
-        >
-          {item.address}
-        </Text>
-      </View>
-      <View style={styles.controlWrapper}>
-        <View style={styles.controlLayout}>
+        <View style={styles.imageWrapper}>
+          <Image
+            source={{ uri: `https://shineducation.com${item.image}` }}
+            style={styles.image}
+          />
+        </View>
+        <View style={styles.infowrapper}>
           <Text
             style={{
-              fontFamily: "RudaB",
-              color: "#009343",
+              fontFamily: "RudaR",
+              color: "#1C2363",
+              fontSize: 16,
             }}
           >
-            <Ionicons
-              name="chevron-forward-outline"
-              size={24}
-              color={"#1C2363"}
-            />
+            {item.name}
+          </Text>
+          <Text
+            style={{
+              fontFamily: "RudaR",
+              fontSize: 10,
+            }}
+          >
+            {item.address}
           </Text>
         </View>
+        <View style={styles.controlWrapper}>
+          <View style={styles.controlLayout}>
+            <Text
+              style={{
+                fontFamily: "RudaB",
+                color: "#009343",
+              }}
+            >
+              <Ionicons
+                name="chevron-forward-outline"
+                size={24}
+                color={"#1C2363"}
+              />
+            </Text>
+          </View>
+        </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
   return (
     <View>
