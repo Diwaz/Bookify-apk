@@ -69,6 +69,7 @@ const SearchBook = ({ params }) => {
         onPress={() => {
           navigation.navigate("Result", {
             bookName: item.name,
+            id: item._id,
           });
         }}
       >

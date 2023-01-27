@@ -11,7 +11,7 @@ import CategoryDisplay from './categoryDisplay';
 import CollegeModal from './CollegeInfoModel';
 import WelcomeBoard from './welcomeBoard';
 import InstitutionDisplay from './institutionDisplay';
-
+import Nodownloads from './noDownloads';
 
 
 export {
@@ -27,6 +27,7 @@ export {
     CategoryDisplay,
     CollegeModal,
 
+    Nodownloads,
     WelcomeBoard,
     InstitutionDisplay
 

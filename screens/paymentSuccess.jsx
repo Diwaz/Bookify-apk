@@ -1,9 +1,19 @@
-import { View, Text, StyleSheet, Dimensions, SafeAreaView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  SafeAreaView,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 import SuccessSVG from "../assets/SVGs/success";
+import { useNavigation } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get("window");
 const PaymentSuccess = () => {
+  const navigation = useNavigation();
+
   return (
     <SafeAreaView
       style={{
@@ -50,16 +60,24 @@ const PaymentSuccess = () => {
           </View>
         </View>
         <View style={style.buttonWrapper}>
-          <View style={style.btn1}>
-            <Text style={{ color: "white", fontFamily: "RudaB", fontSize: 16 }}>
-              Go To Library
-            </Text>
-          </View>
-          <View style={style.btn2}>
-            <Text style={{ color: "grey", fontFamily: "RudaB", fontSize: 16 }}>
-              Go To Homepage
-            </Text>
-          </View>
+          <TouchableOpacity onPress={() => navigation.navigate("Purchase")}>
+            <View style={style.btn1}>
+              <Text
+                style={{ color: "white", fontFamily: "RudaB", fontSize: 16 }}
+              >
+                Go To Library
+              </Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Homescreen")}>
+            <View style={style.btn2}>
+              <Text
+                style={{ color: "grey", fontFamily: "RudaB", fontSize: 16 }}
+              >
+                Go To Homepage
+              </Text>
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>

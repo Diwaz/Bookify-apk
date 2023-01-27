@@ -1,4 +1,4 @@
-import { Header } from "../components";
+import { Header, Nodownloads } from "../components";
 import {
   StyleSheet,
   Text,
@@ -194,12 +194,15 @@ const PurchaseScreen = ({ sectionName }) => {
       <View>
         <Header />
       </View>
-
-      <FlatList
-        showsHorizontalScrollIndicator={false}
-        data={dataarr}
-        renderItem={renderBooks}
-      />
+      {dataarr.length > 0 ? (
+        <FlatList
+          showsHorizontalScrollIndicator={false}
+          data={dataarr}
+          renderItem={renderBooks}
+        />
+      ) : (
+        <Nodownloads />
+      )}
     </View>
   );
 };
