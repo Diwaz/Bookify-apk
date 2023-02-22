@@ -5,8 +5,10 @@ import {
   Dimensions,
   Animated,
   TouchableWithoutFeedback,
+  ScrollView,
 } from "react-native";
 import React from "react";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const { width } = Dimensions.get("window");
 const sliderWidth = width - 50;
@@ -14,35 +16,82 @@ const InfoHeader = ({
   Header1,
   Header2,
   Header3,
+  Header4,
+  Header5,
+  Header6,
   slideX,
   header2Press,
   header1Press,
   header3Press,
+  h1icon,
+  h2icon,
+  h3icon,
+  h4icon,
+  h5icon,
+  h6icon,
 }) => {
   return (
     <View style={styles.topComponent}>
       <View style={styles.titleBar}>
-        <TouchableWithoutFeedback onPress={header1Press}>
-          <View style={styles.headerText}>
-            <Text style={styles.modelFont}>{Header1}</Text>
-          </View>
-        </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback
-          onPress={header2Press}
-          style={styles.headerText}
-        >
-          <View style={styles.headerText}>
-            <Text style={styles.modelFont}>{Header2}</Text>
-          </View>
-        </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback
-          onPress={header3Press}
-          style={styles.headerText}
-        >
-          <View style={styles.headerText}>
-            <Text style={styles.modelFont}>{Header3}</Text>
-          </View>
-        </TouchableWithoutFeedback>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          <TouchableWithoutFeedback onPress={header1Press}>
+            <View style={styles.headerText}>
+              <Text style={styles.modelFont}>
+                <Ionicons name={`${h1icon}`} size={24} color={"#1C2363"} />
+              </Text>
+            </View>
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback
+            onPress={header2Press}
+            style={styles.headerText}
+          >
+            <View style={styles.headerText}>
+              <Text style={styles.modelFont}>
+                <Ionicons name={`${h2icon}`} size={24} color={"#1C2363"} />
+              </Text>
+            </View>
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback
+            onPress={header3Press}
+            style={styles.headerText}
+          >
+            <View style={styles.headerText}>
+              <Text style={styles.modelFont}>
+                <Ionicons name={`${h3icon}`} size={24} color={"#1C2363"} />
+              </Text>
+            </View>
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback
+            onPress={header3Press}
+            style={styles.headerText}
+          >
+            <View style={styles.headerText}>
+              <Text style={styles.modelFont}>
+                <Ionicons name={`${h4icon}`} size={24} color={"#1C2363"} />
+              </Text>
+            </View>
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback
+            onPress={header3Press}
+            style={styles.headerText}
+          >
+            <View style={styles.headerText}>
+              <Text style={styles.modelFont}>
+                <Ionicons name={`${h5icon}`} size={24} color={"#1C2363"} />
+              </Text>
+            </View>
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback
+            onPress={header3Press}
+            style={styles.headerText}
+          >
+            <View style={styles.headerText}>
+              <Text style={styles.modelFont}>
+                <Ionicons name={`${h6icon}`} size={24} color={"#1C2363"} />
+              </Text>
+            </View>
+          </TouchableWithoutFeedback>
+        </ScrollView>
       </View>
       <View style={styles.sliderBar}>
         <Animated.View
@@ -82,7 +131,7 @@ const styles = StyleSheet.create({
     // backgroundColor: "black",
   },
   Slider: {
-    width: sliderWidth / 3,
+    width: sliderWidth / 6,
     backgroundColor: "#1C2363",
     height: 2,
     borderTopRightRadius: 10,
@@ -95,6 +144,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
 
-    width: sliderWidth / 3,
+    width: sliderWidth / 6,
   },
 });

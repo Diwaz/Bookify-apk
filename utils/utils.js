@@ -73,6 +73,24 @@ export async function apiReq(
     });
 }
 
+export function apiGetById(endPoint, id) {
+    return new Promise(function(resolve, reject) {
+        axios.get(endPoint + id, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    // add any additional headers here
+                },
+            })
+            .then(function(response) {
+                // resolve with the response data
+                return resolve(response.data);
+            })
+            .catch(function(error) {
+                // reject with the error
+                return reject(error);
+            });
+    });
+}
 export function apiPost(endPoint, data, headers = {}) {
     return apiReq(endPoint, data, 'post', headers);
 }

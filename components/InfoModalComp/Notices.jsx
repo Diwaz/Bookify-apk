@@ -14,12 +14,12 @@ import React, { useState, useEffect } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 const { width } = Dimensions.get("window");
-const Events = ({ data2 }) => {
+const Notices = ({ data }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [deptData, setDeptData] = useState({});
   const appHit = async () => {
-    const res = await actions.auth.getActivityById(data2);
-    console.log("api res institute events==<<<<", res.data);
+    const res = await actions.auth.getNoticeById(data);
+    console.log("api res institute NOTICES==<<<<", res.data);
     setIsLoading(false);
     setDeptData(res.data);
   };
@@ -76,7 +76,7 @@ const Events = ({ data2 }) => {
             marginVertical: 10,
           }}
         >
-          Events
+          Notices
         </Text>
       </View>
       {isLoading ? (
@@ -92,7 +92,7 @@ const Events = ({ data2 }) => {
   );
 };
 
-export default Events;
+export default Notices;
 
 const styles = StyleSheet.create({
   bottomComponent: {

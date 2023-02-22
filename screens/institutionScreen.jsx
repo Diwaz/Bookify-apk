@@ -10,7 +10,7 @@ import actions from "../redux/actions";
 
 const InstitutionScreen = ({ route }) => {
   const { collegeName, bookImg, id, address } = route.params;
-  console.log("bookId", id);
+  console.log("Institute Id", id);
 
   const cartData = useSelector((state) => state.workflow.cartData);
 
@@ -32,7 +32,7 @@ const InstitutionScreen = ({ route }) => {
         />
       </MidComponent>
       <BottomComponent>
-        <CollegeModal />
+        <CollegeModal departmentData={id} />
       </BottomComponent>
     </SafeAreaView>
   );

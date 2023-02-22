@@ -6,20 +6,20 @@ import {
   Dimensions,
   ActivityIndicator,
   FlatList,
-  Image,
   Alert,
+  Image,
 } from "react-native";
-import actions from "../../redux/actions";
 import React, { useState, useEffect } from "react";
+import actions from "../../redux/actions";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 const { width } = Dimensions.get("window");
-const Events = ({ data2 }) => {
+const AboutUs = ({ data }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [deptData, setDeptData] = useState({});
   const appHit = async () => {
-    const res = await actions.auth.getActivityById(data2);
-    console.log("api res institute events==<<<<", res.data);
+    const res = await actions.auth.getAboutById(data);
+    console.log("api res institute about us==<<<<", res.data);
     setIsLoading(false);
     setDeptData(res.data);
   };
@@ -27,44 +27,6 @@ const Events = ({ data2 }) => {
     appHit();
   }, []);
 
-  const renderItem = ({ item }) => {
-    const ButtonAlert = () =>
-      Alert.alert(` Description:`, `${item.description}`, [
-        {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel",
-        },
-        { text: "OK", onPress: () => console.log("OK Pressed") },
-      ]);
-    return (
-      <View style={styles.modalWrapper}>
-        <View style={styles.modal}>
-          <View>
-            <Image
-              source={{ uri: `https://shineducation.com${item.images}` }}
-              style={styles.image}
-            />
-          </View>
-          <View>
-            <View>
-              <Text style={styles.titleFont}>{item.title}</Text>
-            </View>
-            {/* <View style={{ flexDirection: "row", margin: 10 }}>
-              {words.map((word, index) => (
-                <Text key={index} style={styles.word}>
-                  {word}
-                </Text>
-              ))}
-            </View> */}
-          </View>
-          <TouchableOpacity onPress={ButtonAlert}>
-            <Ionicons name="alert-circle-outline" size={24} color={"#1C2363"} />
-          </TouchableOpacity>
-        </View>
-      </View>
-    );
-  };
   return (
     <View style={styles.bottomComponent}>
       <View style={styles.descriptionModal}>
@@ -76,23 +38,38 @@ const Events = ({ data2 }) => {
             marginVertical: 10,
           }}
         >
-          Events
+          About Us
         </Text>
       </View>
       {isLoading ? (
         <ActivityIndicator />
       ) : (
-        <FlatList
-          data={deptData}
-          renderItem={renderItem}
-          keyExtractor={(item) => item._id}
-        />
+        <View style={styles.modalWrapper}>
+          <View style={styles.modal}>
+            <View>
+              <Image
+                source={{
+                  uri: `https://shineducation.com${deptData.images}`,
+                }}
+                style={styles.image}
+              />
+            </View>
+            <View>
+              <View>
+                {/* <Text style={styles.titleFont}>Introduction</Text> */}
+              </View>
+              <View style={{ flexDirection: "row", margin: 10 }}>
+                <Text>{deptData.text}</Text>
+              </View>
+            </View>
+          </View>
+        </View>
       )}
     </View>
   );
 };
 
-export default Events;
+export default AboutUs;
 
 const styles = StyleSheet.create({
   bottomComponent: {
@@ -131,12 +108,6 @@ const styles = StyleSheet.create({
     color: "#666666",
     marginBottom: 5,
   },
-  section: {
-    padding: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: "#cccccc",
-    backgroundColor: "white",
-  },
   modalWrapper: {
     backgroundColor: "#1C23631A",
     padding: 5,
@@ -145,14 +116,13 @@ const styles = StyleSheet.create({
     width: width * 0.9,
   },
   modal: {
-    flexDirection: "row",
     padding: 5,
     justifyContent: "space-evenly",
     alignItems: "center",
   },
   image: {
-    width: 50,
-    height: 50,
+    width: 200,
+    height: 200,
   },
   titleFont: {
     fontFamily: "RudaB",

@@ -1,5 +1,5 @@
-import { GET_BOOKS, GET_COLLEGE, LOGIN, SIGNUP } from "../../config/Urls";
-import { apiGet, apiPost, clearUserData, setUserData } from "../../utils/utils";
+import { GET_ABOUT, GET_ACTIVITY, GET_BOOKS, GET_COLLEGE, GET_CONTACT, GET_DEPARTMENT, GET_NOTICE, GET_TEAM, LOGIN, SIGNUP } from "../../config/Urls";
+import { apiGet, apiGetById, apiPost, clearUserData, setUserData } from "../../utils/utils";
 import store from "../store";
 import types from "../types";
 
@@ -39,6 +39,24 @@ export function getBooks(data) {
 }
 export function getCollege(data) {
     return apiGet(GET_COLLEGE, data)
+}
+export function getInfoById(id) {
+    return apiGetById(GET_DEPARTMENT, id)
+}
+export function getTeamById(id) {
+    return apiGetById(GET_TEAM, id)
+}
+export function getActivityById(id) {
+    return apiGetById(GET_ACTIVITY, id)
+}
+export function getNoticeById(id) {
+    return apiGetById(GET_NOTICE, id)
+}
+export function getAboutById(id) {
+    return apiGetById(GET_ABOUT, id)
+}
+export function getContactById(id) {
+    return apiGetById(GET_CONTACT, id)
 }
 
 export function isLogin(data) {

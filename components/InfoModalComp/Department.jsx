@@ -4,11 +4,71 @@ import {
   View,
   TouchableOpacity,
   Dimensions,
+  ActivityIndicator,
+  FlatList,
+  Alert,
+  Image,
 } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import actions from "../../redux/actions";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const { width } = Dimensions.get("window");
-const Department = () => {
+const Department = ({ data }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [deptData, setDeptData] = useState({});
+  const appHit = async () => {
+    const res = await actions.auth.getInfoById(data);
+    console.log("api res institute department==<<<<", res.data);
+    setIsLoading(false);
+    setDeptData(res.data);
+  };
+  useEffect(() => {
+    appHit();
+  }, []);
+
+  const renderItem = ({ item }) => {
+    const nwords = item.course.split(" ");
+    const words = nwords.slice(0, 5);
+    console.log(words);
+    const ButtonAlert = () =>
+      Alert.alert(` About:`, `${item.about}`, [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel",
+        },
+        { text: "OK", onPress: () => console.log("OK Pressed") },
+      ]);
+    return (
+      <View style={styles.modalWrapper}>
+        <View style={styles.modal}>
+          <View>
+            <Image
+              source={{ uri: `https://shineducation.com${item.image}` }}
+              style={styles.image}
+            />
+          </View>
+          <View>
+            <View>
+              <Text style={styles.titleFont}>{item.name}</Text>
+            </View>
+            <View style={{ flexDirection: "row", margin: 10 }}>
+              {words.map((word, index) => (
+                <Text key={index} style={styles.word}>
+                  {word}
+                </Text>
+              ))}
+            </View>
+          </View>
+          <TouchableOpacity onPress={ButtonAlert}>
+            <Ionicons name="alert-circle-outline" size={24} color={"#1C2363"} />
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  };
+
   return (
     <View style={styles.bottomComponent}>
       <View style={styles.descriptionModal}>
@@ -16,51 +76,22 @@ const Department = () => {
           style={{
             fontFamily: "RudaR",
             color: "#666666",
-            fontSize: 11,
+            fontSize: 25,
+            marginVertical: 10,
           }}
         >
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur
-          quia impedit unde earum ducimus dolorum?...
-          <TouchableOpacity>
-            <Text
-              style={{
-                fontFamily: "RudaB",
-                color: "#1C2363",
-                fontSize: 11,
-              }}
-            >
-              {" "}
-              See More
-            </Text>
-          </TouchableOpacity>
+          Department
         </Text>
       </View>
-      <View style={styles.optionModal}>
-        <View style={styles.rowComp}>
-          <View style={styles.boxModal}>
-            <Text style={styles.qn}>Author</Text>
-            <Text style={styles.answer}>Department</Text>
-          </View>
-          <View>
-            <View style={styles.boxModal}>
-              <Text style={styles.qn}>Category</Text>
-              <Text style={styles.answer}>College Notes</Text>
-            </View>
-          </View>
-        </View>
-        <View style={styles.rowComp}>
-          <View style={styles.boxModal}>
-            <Text style={styles.qn}>Language</Text>
-            <Text style={styles.answer}>English</Text>
-          </View>
-          <View>
-            <View style={styles.boxModal}>
-              <Text style={styles.qn}>Availability</Text>
-              <Text style={styles.answer}>Available</Text>
-            </View>
-          </View>
-        </View>
-      </View>
+      {isLoading ? (
+        <ActivityIndicator />
+      ) : (
+        <FlatList
+          data={deptData}
+          renderItem={renderItem}
+          keyExtractor={(item) => item._id}
+        />
+      )}
     </View>
   );
 };
@@ -103,5 +134,36 @@ const styles = StyleSheet.create({
     fontFamily: "RudaR",
     color: "#666666",
     marginBottom: 5,
+  },
+  modalWrapper: {
+    backgroundColor: "#1C23631A",
+    padding: 5,
+    margin: 5,
+    borderRadius: 10,
+    width: width * 0.9,
+  },
+  modal: {
+    flexDirection: "row",
+    padding: 5,
+    justifyContent: "space-evenly",
+    alignItems: "center",
+  },
+  image: {
+    width: 50,
+    height: 50,
+  },
+  titleFont: {
+    fontFamily: "RudaB",
+    fontSize: 15,
+  },
+  word: {
+    borderRadius: 5,
+    borderWidth: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    borderColor: "black",
+    margin: 5,
+    padding: 5,
+    fontSize: 10,
   },
 });
