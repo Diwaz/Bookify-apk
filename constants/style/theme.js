@@ -4,8 +4,8 @@ import { scale, verticalScale, moderateScale } from "react-native-size-matters";
 
 export const COLORS = {
     // base colors
-    primary: "#FC6D3F", // custom pruple
-    secondary: "#CDCDD2", //  custom graygray
+    primary: "#1C2363", // custom pruple
+    secondary: "#1C2363", //  custom graygray
 
     // colors
     black: "#1E1F20",
