@@ -81,7 +81,7 @@ export default CollegeModal;
 const styles = StyleSheet.create({
   infowrapper: {
     display: "flex",
-    marginTop: 320,
+    marginTop: 350,
     height: 500,
     alignItems: "center",
     justifyContent: "center",

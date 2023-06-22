@@ -22,12 +22,12 @@ export default function App() {
       const userData = await getUserData();
 
       // const purchasedBooks = getPurchasedData();
-      const booksData = await actions.auth.getBooks();
-      const collegeData = await actions.auth.getCollege();
+      // const booksData = await actions.auth.getBooks();
+      // const collegeData = await actions.auth.getCollege();
 
-      actions.workflow.setBookData(booksData.data);
-      actions.workflow.setCollegeData(collegeData.data);
-      //actions.workflow.setDownload(purchasedBooks);
+      // actions.workflow.setBookData(booksData.data);
+      // actions.workflow.setCollegeData(collegeData.data);
+      // //actions.workflow.setDownload(purchasedBooks);
 
       console.log("user data App.js", userData);
 

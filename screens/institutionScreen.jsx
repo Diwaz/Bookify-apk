@@ -7,6 +7,7 @@ import MidComponent from "../components/midComponent";
 import BottomComponent from "../components/bottomComponent";
 import { useSelector } from "react-redux";
 import actions from "../redux/actions";
+import { InstituteBoard } from "../components/InstituteComponent";
 
 const InstitutionScreen = ({ route }) => {
   const { collegeName, bookImg, id, address } = route.params;
@@ -20,7 +21,8 @@ const InstitutionScreen = ({ route }) => {
         <Header />
       </UpperComponent>
       <MidComponent>
-        <Dashboard
+        <InstituteBoard />
+        {/* <Dashboard
           details
           //Always USE this displayP otherwise the app will crash
           displayP={"flex"}
@@ -29,7 +31,7 @@ const InstitutionScreen = ({ route }) => {
           collegeName={collegeName}
           bookImg={bookImg}
           address={address}
-        />
+        /> */}
       </MidComponent>
       <BottomComponent>
         <CollegeModal departmentData={id} />

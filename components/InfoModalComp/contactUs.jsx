@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Dimensions,
   ActivityIndicator,
+  FlatList,
 } from "react-native";
 
 import actions from "../../redux/actions";
@@ -24,6 +25,54 @@ const ContactUs = ({ data }) => {
   useEffect(() => {
     appHit();
   }, []);
+  if (!deptData) {
+    return (
+      <View style={styles.bottomComponent}>
+        <View style={styles.descriptionModal}>
+          <Text
+            style={{
+              fontFamily: "RudaR",
+              color: "#666666",
+              fontSize: 25,
+              marginVertical: 10,
+            }}
+          >
+            Contact Us
+          </Text>
+        </View>
+        {isLoading ? (
+          <ActivityIndicator />
+        ) : (
+          <View style={styles.optionModal}>
+            <View style={styles.rowComp}>
+              <View style={styles.boxModal}>
+                <Text style={styles.qn}>Email</Text>
+                <Text style={[styles.answer, styles.smallFont]}></Text>
+              </View>
+              <View>
+                <View style={styles.boxModal}>
+                  <Text style={styles.qn}>Address</Text>
+                  <Text style={styles.answer}></Text>
+                </View>
+              </View>
+            </View>
+            <View style={styles.rowComp}>
+              <View style={styles.boxModal}>
+                <Text style={styles.qn}>Phone</Text>
+                <Text style={styles.answer}></Text>
+              </View>
+              <View>
+                <View style={styles.boxModal}>
+                  <Text style={styles.qn}>Website</Text>
+                  <Text style={styles.answer}></Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        )}
+      </View>
+    );
+  }
   return (
     <View style={styles.bottomComponent}>
       <View style={styles.descriptionModal}>

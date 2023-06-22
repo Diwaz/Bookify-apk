@@ -16,16 +16,65 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 const { width } = Dimensions.get("window");
 const AboutUs = ({ data }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [deptData, setDeptData] = useState({});
+  const [deptData, setDeptData] = useState(null);
   const appHit = async () => {
     const res = await actions.auth.getAboutById(data);
     console.log("api res institute about us==<<<<", res.data);
     setIsLoading(false);
     setDeptData(res.data);
+    console.log("dept data from hooks", deptData);
   };
   useEffect(() => {
     appHit();
   }, []);
+  // const renderItem = ({ item }) => {
+  //   ;
+  // };
+  if (!deptData) {
+    return (
+      <View style={styles.bottomComponent}>
+        <View style={styles.descriptionModal}>
+          <Text
+            style={{
+              fontFamily: "RudaR",
+              color: "#666666",
+              fontSize: 25,
+              marginVertical: 10,
+            }}
+          >
+            About Us
+          </Text>
+        </View>
+        {isLoading ? (
+          <ActivityIndicator />
+        ) : (
+          <View style={styles.modalWrapper}>
+            <View style={styles.modal}>
+              <View></View>
+              <View>
+                <View>
+                  {/* <Text style={styles.titleFont}>Introduction</Text> */}
+                </View>
+                <View style={{ flexDirection: "row", margin: 10 }}>
+                  <Text>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Corrupti unde similique obcaecati recusandae quaerat nulla
+                    labore temporibus et. Praesentium corporis eum modi
+                    molestias minima error!
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+          // <FlatList
+          //   data={[deptData]}
+          //   renderItem={renderItem}
+          //   keyExtractor={(item) => item._id}
+          // />
+        )}
+      </View>
+    );
+  }
 
   return (
     <View style={styles.bottomComponent}>
@@ -64,6 +113,11 @@ const AboutUs = ({ data }) => {
             </View>
           </View>
         </View>
+        // <FlatList
+        //   data={[deptData]}
+        //   renderItem={renderItem}
+        //   keyExtractor={(item) => item._id}
+        // />
       )}
     </View>
   );
