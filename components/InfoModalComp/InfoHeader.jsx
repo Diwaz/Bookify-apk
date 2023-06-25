@@ -36,9 +36,7 @@ const InfoHeader = ({
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <TouchableWithoutFeedback onPress={header1Press}>
             <View style={styles.headerText}>
-              <Text style={styles.modelFont}>
-                <Ionicons name={`${h1icon}`} size={24} color={"#1C2363"} />
-              </Text>
+              <Text style={styles.modelFont}>{Header1}</Text>
             </View>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback
@@ -46,9 +44,7 @@ const InfoHeader = ({
             style={styles.headerText}
           >
             <View style={styles.headerText}>
-              <Text style={styles.modelFont}>
-                <Ionicons name={`${h2icon}`} size={24} color={"#1C2363"} />
-              </Text>
+              <Text style={styles.modelFont}>{Header2}</Text>
             </View>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback
@@ -56,9 +52,7 @@ const InfoHeader = ({
             style={styles.headerText}
           >
             <View style={styles.headerText}>
-              <Text style={styles.modelFont}>
-                <Ionicons name={`${h3icon}`} size={24} color={"#1C2363"} />
-              </Text>
+              <Text style={styles.modelFont}>{Header3}</Text>
             </View>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback
@@ -66,9 +60,7 @@ const InfoHeader = ({
             style={styles.headerText}
           >
             <View style={styles.headerText}>
-              <Text style={styles.modelFont}>
-                <Ionicons name={`${h4icon}`} size={24} color={"#1C2363"} />
-              </Text>
+              <Text style={styles.modelFont}>{Header4}</Text>
             </View>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback
@@ -76,9 +68,7 @@ const InfoHeader = ({
             style={styles.headerText}
           >
             <View style={styles.headerText}>
-              <Text style={styles.modelFont}>
-                <Ionicons name={`${h5icon}`} size={24} color={"#1C2363"} />
-              </Text>
+              <Text style={styles.modelFont}>{Header5}</Text>
             </View>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback
@@ -86,9 +76,7 @@ const InfoHeader = ({
             style={styles.headerText}
           >
             <View style={styles.headerText}>
-              <Text style={styles.modelFont}>
-                <Ionicons name={`${h6icon}`} size={24} color={"#1C2363"} />
-              </Text>
+              <Text style={styles.modelFont}>{Header6}</Text>
             </View>
           </TouchableWithoutFeedback>
         </ScrollView>
@@ -125,6 +113,7 @@ const styles = StyleSheet.create({
   modelFont: {
     fontFamily: "RudaR",
     color: "#1C2363",
+    fontSize: 10,
   },
   sliderBar: {
     width: sliderWidth,

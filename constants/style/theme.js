@@ -10,6 +10,8 @@ export const COLORS = {
     // colors
     black: "#1E1F20",
     white: "#FFFFFF",
+    addressFont: '#7e8299',
+    orange: '#ffad0f',
 
     lightGray: "#F5F5F6",
     lightGray2: "#F6F6F7",
@@ -31,7 +33,7 @@ export const SIZES = {
     // font sizes
     largeTitle: scale(50),
     h1: scale(13),
-    h2: scale(10),
+    h2: scale(9),
     h3: 20,
     h4: 18,
     body1: 30,

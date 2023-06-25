@@ -56,11 +56,11 @@ const CollegeModal = ({ departmentData }) => {
       />
       <ScrollView
         ref={scrollView}
-        horizontal
+        //horizontal
         showsHorizontalScrollIndicator={false}
-        pagingEnabled
+        // pagingEnabled
         onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { x: animation } } }],
+          [{ nativeEvent: { contentOffset: { y: animation } } }],
           { useNativeDriver: false }
         )}
         contentContainerStyle={{}}
