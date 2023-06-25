@@ -12,17 +12,36 @@ import { InstituteBoard } from "../components/InstituteComponent";
 const InstitutionScreen = ({ route }) => {
   const { collegeName, bookImg, id, address } = route.params;
   console.log("Institute Id", id);
+  const [isLoading, setIsLoading] = useState(true);
+  const [deptData, setDeptData] = useState({});
+  const appHit = async () => {
+    const res = await actions.auth.getContactById(id);
+    console.log("api res institute Contact us==<<<<", res.data);
+    setIsLoading(false);
+    setDeptData(res.data);
+  };
+  useEffect(() => {
+    appHit();
+  }, []);
 
   const cartData = useSelector((state) => state.workflow.cartData);
-
-  return (
-    <SafeAreaView>
-      <UpperComponent>
-        <Header />
-      </UpperComponent>
-      <MidComponent>
-        <InstituteBoard />
-        {/* <Dashboard
+  if (!deptData) {
+    return (
+      <SafeAreaView>
+        <UpperComponent>
+          <Header />
+        </UpperComponent>
+        <MidComponent>
+          {!isLoading ? (
+            <InstituteBoard
+              id={id}
+              collegeName={collegeName}
+              collegeImg={bookImg}
+              address={"Patan Dhoka,Lalitpur"}
+              rating={3}
+            />
+          ) : (
+            /* <Dashboard
           details
           //Always USE this displayP otherwise the app will crash
           displayP={"flex"}
@@ -31,7 +50,42 @@ const InstitutionScreen = ({ route }) => {
           collegeName={collegeName}
           bookImg={bookImg}
           address={address}
-        /> */}
+        /> */
+            <ActivityIndicator />
+          )}
+        </MidComponent>
+        <BottomComponent>
+          <CollegeModal departmentData={id} />
+        </BottomComponent>
+      </SafeAreaView>
+    );
+  }
+  return (
+    <SafeAreaView>
+      <UpperComponent>
+        <Header />
+      </UpperComponent>
+      <MidComponent>
+        {!isLoading ? (
+          <InstituteBoard
+            id={id}
+            collegeName={collegeName}
+            collegeImg={bookImg}
+            address={deptData.address}
+          />
+        ) : (
+          /* <Dashboard
+          details
+          //Always USE this displayP otherwise the app will crash
+          displayP={"flex"}
+          CollegeInfo
+          id={id}
+          collegeName={collegeName}
+          bookImg={bookImg}
+          address={address}
+        /> */
+          <ActivityIndicator />
+        )}
       </MidComponent>
       <BottomComponent>
         <CollegeModal departmentData={id} />

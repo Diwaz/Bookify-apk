@@ -18,7 +18,7 @@ const InstitutionDisplay = ({ sectionName }) => {
   const navigation = useNavigation();
 
   const collegeData = useSelector((state) => state.workflow.collegeData);
-
+  console.log("yeta ko clzData", collegeData);
   const renderInstitute = ({ item }) => (
     <TouchableOpacity
       onPress={() => {

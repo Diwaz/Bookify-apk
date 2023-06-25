@@ -5,7 +5,7 @@ import { scale, verticalScale, moderateScale } from "react-native-size-matters";
 export const COLORS = {
     // base colors
     primary: "#1C2363", // custom pruple
-    secondary: "#1C2363", //  custom graygray
+    secondary: "#E8E9EF", //  custom graygray
 
     // colors
     black: "#1E1F20",
@@ -17,6 +17,7 @@ export const COLORS = {
     lightGray4: "#F8F8F9",
     transparent: "transparent",
     darkgray: '#898C95',
+    checkmark: '#179CF0'
 };
 
 export const SIZES = {
@@ -29,14 +30,14 @@ export const SIZES = {
 
     // font sizes
     largeTitle: scale(50),
-    h1: scale(30),
-    h2: scale(22),
+    h1: scale(13),
+    h2: scale(10),
     h3: 20,
     h4: 18,
     body1: 30,
     body2: 20,
     body3: 16,
-    body4: 14,
+    body4: moderateScale(5),
     body5: 12,
 
     // app dimensions
