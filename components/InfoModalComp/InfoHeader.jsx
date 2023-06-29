@@ -6,12 +6,48 @@ import {
   Animated,
   TouchableWithoutFeedback,
   ScrollView,
+  FlatList,
 } from "react-native";
 import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { COLORS, FONTS, SIZES } from "../../constants/style/theme";
+import { moderateScale } from "react-native-size-matters";
 
 const { width } = Dimensions.get("window");
 const sliderWidth = width - 50;
+const instituteMenu = [
+  {
+    id: 1,
+    option: "Department",
+  },
+  {
+    id: 2,
+    option: "Events",
+  },
+  {
+    id: 3,
+    option: "Teams",
+  },
+  {
+    id: 4,
+    option: "About Us",
+  },
+  {
+    id: 5,
+    option: "Notices",
+  },
+  {
+    id: 6,
+    option: "Contact Us",
+  },
+];
+const renderMenu = ({ item }) => {
+  return (
+    <View style={styles.menuWrapper}>
+      <Text style={[styles.menuFont, FONTS.h1]}>{item.option}</Text>
+    </View>
+  );
+};
 const InfoHeader = ({
   Header1,
   Header2,
@@ -33,7 +69,13 @@ const InfoHeader = ({
   return (
     <View style={styles.topComponent}>
       <View style={styles.titleBar}>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <FlatList
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          data={instituteMenu}
+          renderItem={renderMenu}
+        />
+        {/* <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <TouchableWithoutFeedback onPress={header1Press}>
             <View style={styles.headerText}>
               <Text style={styles.modelFont}>{Header1}</Text>
@@ -84,7 +126,7 @@ const InfoHeader = ({
       <View style={styles.sliderBar}>
         <Animated.View
           style={[styles.Slider, { transform: [{ translateX: slideX }] }]}
-        ></Animated.View>
+        ></Animated.View> */}
       </View>
     </View>
   );
@@ -99,7 +141,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: "#1C23631A",
+    // backgroundColor: "#1C23631A",
     marginBottom: 14,
     flexDirection: "column",
     paddingTop: 20,
@@ -134,5 +176,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
 
     width: sliderWidth / 6,
+  },
+  menuWrapper: {
+    marginHorizontal: moderateScale(10),
+    borderColor: COLORS.primary,
+    borderWidth: 1,
+
+    paddingHorizontal: moderateScale(10),
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: moderateScale(5),
   },
 });

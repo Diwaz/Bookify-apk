@@ -29,7 +29,7 @@ const ContactUs = ({ data }) => {
     return (
       <View style={styles.bottomComponent}>
         <View style={styles.descriptionModal}>
-          <Text
+          {/* <Text
             style={{
               fontFamily: "RudaR",
               color: "#666666",
@@ -38,7 +38,7 @@ const ContactUs = ({ data }) => {
             }}
           >
             Contact Us
-          </Text>
+          </Text> */}
         </View>
         {isLoading ? (
           <ActivityIndicator />
@@ -76,7 +76,7 @@ const ContactUs = ({ data }) => {
   return (
     <View style={styles.bottomComponent}>
       <View style={styles.descriptionModal}>
-        <Text
+        {/* <Text
           style={{
             fontFamily: "RudaR",
             color: "#666666",
@@ -85,7 +85,7 @@ const ContactUs = ({ data }) => {
           }}
         >
           Contact Us
-        </Text>
+        </Text> */}
       </View>
       {isLoading ? (
         <ActivityIndicator />
@@ -128,11 +128,11 @@ export default ContactUs;
 const styles = StyleSheet.create({
   bottomComponent: {
     borderRadius: 4,
-    width: width,
-    height: 400,
+    width: width * 0.9,
+    // height: 400,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#FFFFFF",
+    // backgroundColor: "#FFFFFF",
   },
   modelFont: {
     fontFamily: "RudaR",

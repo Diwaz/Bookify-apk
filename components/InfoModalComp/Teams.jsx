@@ -66,7 +66,7 @@ const Teams = ({ data }) => {
   return (
     <View style={styles.bottomComponent}>
       <View style={styles.descriptionModal}>
-        <Text
+        {/* <Text
           style={{
             fontFamily: "RudaR",
             color: "#666666",
@@ -75,7 +75,7 @@ const Teams = ({ data }) => {
           }}
         >
           Our Teams
-        </Text>
+        </Text> */}
       </View>
       {isLoading ? (
         <ActivityIndicator />
@@ -95,11 +95,11 @@ export default Teams;
 const styles = StyleSheet.create({
   bottomComponent: {
     borderRadius: 4,
-    width: width,
-    height: 400,
+    width: width * 0.9,
+
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#FFFFFF",
+    // backgroundColor: "#FFFFFF",
   },
   modelFont: {
     fontFamily: "RudaR",
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     padding: 5,
     margin: 5,
     borderRadius: 10,
-    width: width * 0.9,
+    width: width * 0.8,
   },
   modal: {
     flexDirection: "row",

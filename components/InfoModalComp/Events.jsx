@@ -68,7 +68,7 @@ const Events = ({ data2 }) => {
   return (
     <View style={styles.bottomComponent}>
       <View style={styles.descriptionModal}>
-        <Text
+        {/* <Text
           style={{
             fontFamily: "RudaR",
             color: "#666666",
@@ -77,7 +77,7 @@ const Events = ({ data2 }) => {
           }}
         >
           Events
-        </Text>
+        </Text> */}
       </View>
       {isLoading ? (
         <ActivityIndicator />
@@ -98,10 +98,10 @@ const styles = StyleSheet.create({
   bottomComponent: {
     borderRadius: 4,
     width: width,
-    height: 400,
+    // height: 400,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#FFFFFF",
+    // backgroundColor: "#FFFFFF",
   },
   modelFont: {
     fontFamily: "RudaR",

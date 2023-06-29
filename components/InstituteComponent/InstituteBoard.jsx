@@ -1,9 +1,42 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, FlatList } from "react-native";
 import React from "react";
 import { scale, verticalScale, moderateScale } from "react-native-size-matters";
 import { COLORS, FONTS, SIZES } from "../../constants/style/theme";
 import Ionicons from "@expo/vector-icons/Ionicons";
 const InstituteBoard = ({ collegeName, collegeImg, address, rating }) => {
+  const instituteMenu = [
+    {
+      id: 1,
+      option: "Department",
+    },
+    {
+      id: 2,
+      option: "Events",
+    },
+    {
+      id: 3,
+      option: "Teams",
+    },
+    {
+      id: 4,
+      option: "About Us",
+    },
+    {
+      id: 5,
+      option: "Notices",
+    },
+    {
+      id: 6,
+      option: "Contact Us",
+    },
+  ];
+  const renderMenu = ({ item }) => {
+    return (
+      <View style={styles.menuWrapper}>
+        <Text style={[styles.menuFont, FONTS.h1]}>{item.option}</Text>
+      </View>
+    );
+  };
   return (
     <View style={styles.instituteContainer}>
       <View style={styles.instituteHeader}>
@@ -14,7 +47,7 @@ const InstituteBoard = ({ collegeName, collegeImg, address, rating }) => {
                 uri: `https://shineducation.com${collegeImg}`,
               }}
               style={{
-                width: 280,
+                width: SIZES.width * 0.9,
                 height: 130,
                 borderColor: COLORS.checkmark,
                 borderWidth: moderateScale(1),
@@ -145,6 +178,14 @@ const InstituteBoard = ({ collegeName, collegeImg, address, rating }) => {
               />
             </View>
           </View>
+          {/* <View style={styles.flatListWrapper}>
+            <FlatList
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              data={instituteMenu}
+              renderItem={renderMenu}
+            />
+          </View> */}
         </View>
       </View>
     </View>
@@ -163,10 +204,12 @@ const styles = StyleSheet.create({
   },
   instituteHeader: {
     display: "flex",
-    height: verticalScale(230),
+    height: verticalScale(250),
     width: moderateScale(SIZES.width * 0.9, 0.1),
     backgroundColor: COLORS.secondary,
     borderRadius: SIZES.body4,
+    // borderBottomRightRadius: 0,
+    // borderBottomLeftRadius: 0,
     borderColor: COLORS.black,
     justifyContent: "center",
     alignItems: "center",
@@ -197,5 +240,23 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     padding: scale(4),
     marginTop: verticalScale(10),
+  },
+  menuWrapper: {
+    // marginHorizontal: moderateScale(10),
+    borderColor: COLORS.grey,
+    borderWidth: 1,
+
+    paddingHorizontal: moderateScale(10),
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRightWidth: 0,
+
+    // borderRadius: SIZES.body4,
+  },
+  flatListWrapper: {
+    height: verticalScale(30),
+    marginTop: verticalScale(15),
+    position: "relative",
   },
 });

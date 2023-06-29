@@ -72,7 +72,7 @@ const Department = ({ data }) => {
   return (
     <View style={styles.bottomComponent}>
       <View style={styles.descriptionModal}>
-        <Text
+        {/* <Text
           style={{
             fontFamily: "RudaR",
             color: "#666666",
@@ -81,7 +81,7 @@ const Department = ({ data }) => {
           }}
         >
           Department
-        </Text>
+        </Text> */}
       </View>
       {isLoading ? (
         <ActivityIndicator />
@@ -101,11 +101,19 @@ export default Department;
 const styles = StyleSheet.create({
   bottomComponent: {
     borderRadius: 4,
-    width: width,
-    height: 400,
+    width: width * 0.9,
+
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#FFFFFF",
+    // backgroundColor: "#FFFFFF",
+    // shadowColor: "black",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 5,
+    // },
+    // shadowRadius: 6,
+    // shadowOpacity: 0.8,
+    // elevation: 7,
   },
   modelFont: {
     fontFamily: "RudaR",
@@ -140,7 +148,7 @@ const styles = StyleSheet.create({
     padding: 5,
     margin: 5,
     borderRadius: 10,
-    width: width * 0.9,
+    width: width * 0.8,
   },
   modal: {
     flexDirection: "row",
