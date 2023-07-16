@@ -9,14 +9,19 @@ import {
   Alert,
   Image,
 } from "react-native";
+import Collapsible from "react-native-collapsible";
+import { scale, verticalScale, moderateScale } from "react-native-size-matters";
 import React, { useState, useEffect } from "react";
 import actions from "../../redux/actions";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import DeptContainer from "./deptContainer";
+import { SIZES, COLORS, FONTS } from "../../constants/style/theme";
 
 const { width } = Dimensions.get("window");
 const Department = ({ data }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [deptData, setDeptData] = useState({});
+  const [deptCol, setDeptCol] = useState(true);
   const appHit = async () => {
     const res = await actions.auth.getInfoById(data);
     console.log("api res institute department==<<<<", res.data);
@@ -42,14 +47,77 @@ const Department = ({ data }) => {
       ]);
     return (
       <View style={styles.modalWrapper}>
+        {/* <TouchableOpacity
+          onPress={() => {
+            setDeptCol(!deptCol);
+          }}
+          style={
+            {
+              // backgroundColor: "blue",
+            }
+          }
+        >
+          <View style={styles.section}>
+            <Text
+              style={{
+                marginRight: moderateScale(5),
+              }}
+            >
+              <Ionicons
+                name={`chevron-${deptCol ? "forward" : "down"}-outline`}
+                size={scale(15)}
+                color={COLORS.black}
+              />
+            </Text>
+          </View>
+          <Collapsible collapsed={deptCol}>
+            <DeptContainer msg={item.about} />
+          </Collapsible>
+        </TouchableOpacity> */}
         <View style={styles.modal}>
-          <View>
+          <TouchableOpacity
+            style={{
+              width: SIZES.width * 0.9,
+            }}
+            onPress={() => {
+              setDeptCol(!deptCol);
+            }}
+          >
+            <View style={styles.section}>
+              <Text
+                style={{
+                  marginRight: moderateScale(5),
+                }}
+              >
+                <Ionicons
+                  name={`chevron-${deptCol ? "forward" : "down"}-outline`}
+                  size={scale(15)}
+                  color={COLORS.black}
+                />
+              </Text>
+              <Text style={FONTS.h3}>{item.name}</Text>
+            </View>
+            <Collapsible collapsed={deptCol}>
+              <DeptContainer
+                msg={item.about}
+                source={{ uri: `https://shineducation.com${item.image}` }}
+                words={words}
+              />
+            </Collapsible>
+          </TouchableOpacity>
+          {/* <View>
             <Image
               source={{ uri: `https://shineducation.com${item.image}` }}
               style={styles.image}
             />
-          </View>
-          <View>
+          </View> */}
+          {/* <View
+            style={{
+              // backgroundColor: "blue",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
             <View>
               <Text style={styles.titleFont}>{item.name}</Text>
             </View>
@@ -60,10 +128,7 @@ const Department = ({ data }) => {
                 </Text>
               ))}
             </View>
-          </View>
-          <TouchableOpacity onPress={ButtonAlert}>
-            <Ionicons name="alert-circle-outline" size={24} color={"#1C2363"} />
-          </TouchableOpacity>
+          </View> */}
         </View>
       </View>
     );
@@ -101,7 +166,7 @@ export default Department;
 const styles = StyleSheet.create({
   bottomComponent: {
     borderRadius: 4,
-    width: width * 0.9,
+    width: width,
 
     alignItems: "center",
     justifyContent: "center",
@@ -149,12 +214,14 @@ const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 10,
     width: width * 0.8,
+    flexDirection: "column-reverse",
   },
   modal: {
     flexDirection: "row",
     padding: 5,
-    justifyContent: "space-evenly",
+    justifyContent: "space-between",
     alignItems: "center",
+    // backgroundColor: "red",
   },
   image: {
     width: 50,
@@ -173,5 +240,13 @@ const styles = StyleSheet.create({
     margin: 5,
     padding: 5,
     fontSize: 10,
+  },
+  section: {
+    display: "flex",
+    flexDirection: "row",
+    // backgroundColor: "red",
+    width: SIZES.width * 0.9,
+    padding: moderateScale(10),
+    alignItems: "center",
   },
 });

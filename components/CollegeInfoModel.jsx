@@ -43,7 +43,7 @@ const CollegeModal = ({ departmentData }) => {
 
   return (
     <View style={styles.infowrapper}>
-      {/* <InfoHeader
+      <InfoHeader
         Header1="Department"
         header1Press={() => scrollView.current.scrollTo({ x: 0 })}
         header2Press={() => scrollView.current.scrollTo({ x: width })}
@@ -63,19 +63,19 @@ const CollegeModal = ({ departmentData }) => {
         h5icon={"mail-unread-outline"}
         h6icon={"at-outline"}
         slideX={sliderTranslateX}
-      />  */}
+      />
       <ScrollView
         ref={scrollView}
-        //horizontal
+        horizontal
         showsHorizontalScrollIndicator={false}
-        // pagingEnabled
+        pagingEnabled
         onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { y: animation } } }],
+          [{ nativeEvent: { contentOffset: { x: animation } } }],
           { useNativeDriver: false }
         )}
         contentContainerStyle={{}}
       >
-        <View style={styles.accordWrapper}>
+        {/* <View style={styles.accordWrapper}>
           <TouchableOpacity
             style={{
               width: SIZES.width * 0.9,
@@ -232,13 +232,13 @@ const CollegeModal = ({ departmentData }) => {
               <ContactUs data={departmentData} />
             </Collapsible>
           </TouchableOpacity>
-        </View>
-
-        {/* <Events data2={departmentData} />
+        </View> */}
+        <Department data={departmentData} />
+        <Events data2={departmentData} />
         <Teams data={departmentData} />
         <AboutUs data={departmentData} />
         <Notices data={departmentData} />
-        <ContactUs data={departmentData} /> */}
+        <ContactUs data={departmentData} />
       </ScrollView>
     </View>
   );
@@ -250,7 +250,7 @@ const styles = StyleSheet.create({
   infowrapper: {
     display: "flex",
     marginTop: 350,
-    height: 500,
+    height: verticalScale(SIZES.height * 0.4),
     alignItems: "center",
     // backgroundColor: "red",
     justifyContent: "center",

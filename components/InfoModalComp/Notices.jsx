@@ -97,7 +97,7 @@ export default Notices;
 const styles = StyleSheet.create({
   bottomComponent: {
     borderRadius: 4,
-    width: width * 0.9,
+    width: width,
     // height: 400,
     alignItems: "center",
     justifyContent: "center",

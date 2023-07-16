@@ -69,13 +69,13 @@ const InfoHeader = ({
   return (
     <View style={styles.topComponent}>
       <View style={styles.titleBar}>
-        <FlatList
+        {/* <FlatList
           horizontal
           showsHorizontalScrollIndicator={false}
           data={instituteMenu}
           renderItem={renderMenu}
-        />
-        {/* <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        /> */}
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <TouchableWithoutFeedback onPress={header1Press}>
             <View style={styles.headerText}>
               <Text style={styles.modelFont}>{Header1}</Text>
@@ -126,7 +126,7 @@ const InfoHeader = ({
       <View style={styles.sliderBar}>
         <Animated.View
           style={[styles.Slider, { transform: [{ translateX: slideX }] }]}
-        ></Animated.View> */}
+        ></Animated.View>
       </View>
     </View>
   );

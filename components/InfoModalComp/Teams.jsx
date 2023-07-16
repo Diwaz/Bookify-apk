@@ -95,7 +95,7 @@ export default Teams;
 const styles = StyleSheet.create({
   bottomComponent: {
     borderRadius: 4,
-    width: width * 0.9,
+    width: width,
 
     alignItems: "center",
     justifyContent: "center",
