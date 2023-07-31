@@ -7,6 +7,7 @@ import Homescreen from "../screens/homescreen";
 import Purchasescreen from "../screens/purchasescreen";
 import Settingscreen from "../screens/settingscreen";
 import OfferScreen from "../screens/offerscreen";
+
 import Logoutscreen from "../screens/logoutscreen";
 import Profilescreen from "../screens/profilescreen";
 // import CustomDrawer from "../components/cusomedrawer";
@@ -24,6 +25,7 @@ import PurchaseScreen from "../screens/purchasescreen";
 import PDFView from "../screens/PdfView";
 import ResultBook from "../screens/resultScreen";
 import PaymentSuccess from "../screens/paymentSuccess";
+import ExploreScreen from "../screens/exploreScreen";
 
 // const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -228,6 +230,33 @@ const Appstack = () => {
         }}
       />
       <Tab.Screen
+        name="Books"
+        component={ExploreScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Ionicons
+                name={"book"}
+                size={23}
+                color={focused ? "#1C2363" : "#748c94"}
+              />
+              <Text
+                style={{
+                  color: focused ? "#1C2363" : "#748c94",
+                }}
+              >
+                Books
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
         name="My Profile"
         component={Profilescreen}
         options={{
@@ -249,33 +278,6 @@ const Appstack = () => {
                 }}
               >
                 Profile
-              </Text>
-            </View>
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Setting"
-        component={Settingscreen}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <View
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Ionicons
-                name={"settings"}
-                size={23}
-                color={focused ? "#1C2363" : "#748c94"}
-              />
-              <Text
-                style={{
-                  color: focused ? "#1C2363" : "#748c94",
-                }}
-              >
-                Setting
               </Text>
             </View>
           ),

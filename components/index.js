@@ -12,7 +12,7 @@ import CollegeModal from './CollegeInfoModel';
 import WelcomeBoard from './welcomeBoard';
 import InstitutionDisplay from './institutionDisplay';
 import Nodownloads from './noDownloads';
-
+import BooksDisplay from './booksDisplay';
 
 export {
     Header,
@@ -29,6 +29,7 @@ export {
 
     Nodownloads,
     WelcomeBoard,
-    InstitutionDisplay
+    InstitutionDisplay,
+    BooksDisplay
 
 }
