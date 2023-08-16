@@ -40,7 +40,7 @@ const InstituteBoard = ({ collegeName, collegeImg, address, rating }) => {
   return (
     <View style={styles.instituteContainer}>
       <View style={styles.instituteHeader}>
-        <View style={styles.instituteLogo}>
+        {/* <View style={styles.instituteLogo}>
           <View>
             <Image
               source={{
@@ -54,17 +54,7 @@ const InstituteBoard = ({ collegeName, collegeImg, address, rating }) => {
                 borderRadius: moderateScale(4),
               }}
             />
-            {/* <View
-              style={{
-                backgroundColor: "lightgreen",
-                width: 15,
-                height: 15,
-                position: "absolute",
-                right: -7,
-                borderRadius: 10,
-                bottom: 5,
-              }}
-            ></View> */}
+          
           </View>
           <Text
             style={[
@@ -178,15 +168,8 @@ const InstituteBoard = ({ collegeName, collegeImg, address, rating }) => {
               />
             </View>
           </View>
-          {/* <View style={styles.flatListWrapper}>
-            <FlatList
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              data={instituteMenu}
-              renderItem={renderMenu}
-            />
-          </View> */}
-        </View>
+          
+        </View> */}
       </View>
     </View>
   );

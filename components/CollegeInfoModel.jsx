@@ -25,7 +25,7 @@ import { COLORS, FONTS, SIZES } from "../constants/style/theme";
 
 const { width } = Dimensions.get("window");
 
-const CollegeModal = ({ departmentData }) => {
+const CollegeModal = ({ departmentData, collegeName, address }) => {
   const animation = useRef(new Animated.Value(0)).current;
   const scrollView = useRef();
   const [deptCol, setDeptCol] = useState(true);
@@ -43,6 +43,53 @@ const CollegeModal = ({ departmentData }) => {
 
   return (
     <View style={styles.infowrapper}>
+      <View style={styles.titleWrapper}>
+        <View style={styles.mainInfo}>
+          <Text
+            style={[
+              // collegeName.length > 30 ? FONTS.h2 : FONTS.h1B,
+              FONTS.h1B,
+              {
+                // marginTop: moderateScale(10),
+                // backgroundColor: "blue",
+                //  paddingHorizontal: 10,
+              },
+            ]}
+          >
+            {collegeName}
+          </Text>
+          <Text
+            style={[
+              FONTS.h2,
+              {
+                color: COLORS.addressFont,
+              },
+            ]}
+          >
+            <Ionicons
+              name="location-outline"
+              size={scale(10)}
+              color={COLORS.primary}
+            />
+            Patan Dhoka,Lalitpur
+            {/* {address} */}
+          </Text>
+        </View>
+        <View style={styles.styleInfo}>
+          <Text>
+            <Ionicons
+              name={`star-outline`}
+              size={scale(15)}
+              color={COLORS.black}
+              style={{
+                marginRight: 5,
+              }}
+            />
+          </Text>
+          <Text style={[styles.ratingInfo, FONTS.h1]}>4.5</Text>
+        </View>
+      </View>
+
       <InfoHeader
         Header1="Department"
         header1Press={() => scrollView.current.scrollTo({ x: 0 })}
@@ -247,12 +294,36 @@ const CollegeModal = ({ departmentData }) => {
 export default CollegeModal;
 
 const styles = StyleSheet.create({
+  titleWrapper: {
+    //  backgroundColor: "red",
+    alignSelf: "flex-start",
+    width: SIZES.width,
+    height: 80,
+    justifyContent: "center",
+    paddingHorizontal: SIZES.padding3,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  styleInfo: {
+    //  backgroundColor: "yellow",
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexDirection: "row",
+    flexGrow: 0.1,
+  },
+  mainInfo: {
+    flexGrow: 5,
+  },
+  ratingInfo: {
+    //    backgroundColor: "orange",
+    //   padding: 5,
+  },
   infowrapper: {
     display: "flex",
-    marginTop: 350,
-    height: verticalScale(SIZES.height * 0.4),
+    // marginTop: 350,
+    //height: verticalScale(SIZES.height * 0.4),
     alignItems: "center",
-    // backgroundColor: "red",
+    // backgroundColor: "orange",
     justifyContent: "center",
   },
   section: {

@@ -13,7 +13,7 @@ import WelcomeBoard from './welcomeBoard';
 import InstitutionDisplay from './institutionDisplay';
 import Nodownloads from './noDownloads';
 import BooksDisplay from './booksDisplay';
-
+import ScrollViewComp from './scrollViewComp';
 export {
     Header,
     Dashboard,
@@ -26,7 +26,7 @@ export {
     NavigateLockscreen,
     CategoryDisplay,
     CollegeModal,
-
+    ScrollViewComp,
     Nodownloads,
     WelcomeBoard,
     InstitutionDisplay,
